@@ -2,7 +2,6 @@
 import AboutMe from "@/components/AboutMe";
 import { ExperienceCard } from "@/components/Experience";
 import Hero from "@/components/Hero";
-import RecentProjects from "@/components/RecentProjects";
 import TechIcons from "@/components/ui/Skills";
 import { CardSpotlight } from "@/components/ui/Spotlight";
 
