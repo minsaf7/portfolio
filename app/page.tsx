@@ -217,33 +217,32 @@ export default function Home() {
 }
 
 interface GradientdivProps {
-  children: ReactNode;
-  className: string;
+  children?: React.ReactNode;
+  className?: string;
 }
-const Gradientdiv: React.FC<GradientdivProps> = ({ children, className }) => {
-  const GradientPosition = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const windowWidth = window.innerHeight;
 
-    useEffect(() => {
-      const updateMousePosition = (ev: any) => {
-        setMousePosition({ x: ev.clientX, y: ev.clientY });
-      };
+const Gradientdiv: React.FC<GradientdivProps> = ({ children, className }) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const updateMousePosition = (ev: MouseEvent) => {
+      setMousePosition({ x: ev.clientX, y: ev.clientY });
+    };
+
+    if (typeof window !== "undefined") {
       window.addEventListener("mousemove", updateMousePosition);
       return () => {
         window.removeEventListener("mousemove", updateMousePosition);
       };
-    }, []);
-
-    return mousePosition;
-  };
+    }
+  }, []);
 
   return (
     <div
       style={{
         backgroundImage: `radial-gradient( circle at ${
-          GradientPosition().x
-        }px ${GradientPosition().y}px, #1f2833  , #0b0c10 40% )`,
+          mousePosition.x
+        }px ${mousePosition.y}px, #1f2833 , #0b0c10 40% )`,
       }}
       className={className}
     >
