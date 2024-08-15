@@ -4,6 +4,7 @@ const nextConfig = {
         domains: ['images.unsplash.com','www.directfn.com','www.docker.com','v4.material-ui.com'],
       },
       output: 'export',
+      distDir: 'dist',
 };
 
 export default nextConfig;
