@@ -3,8 +3,7 @@ const nextConfig = {
     images:{
         domains: ['images.unsplash.com','www.directfn.com','www.docker.com','v4.material-ui.com'],
       },
-      basePath: '/portfolio',
-      assetPrefix: '/portfolio/',
+      output: 'export',
 };
 
 export default nextConfig;
