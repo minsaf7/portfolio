@@ -2,9 +2,9 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./sections/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -24,8 +24,39 @@ const config: Config = {
       md: "768px",
       lg: "1200px",
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: {
+          100: "#7a1d1d",
+          500: "#741b1b",
+          900: "#5a0e0e",
+        },
+        secondary: "#7630a1"
+      },
+    },
   },
   plugins: [],
 };
 export default config;
+
+
+//Deep blue and tan – color palette
+// Sand Tan: #e1b382
+
+// Sand Tan Shadow: #c89666
+
+// Night Blue: #2d545e
+
+// Night Blue Shadow: #12343b
+
+
+
+
+
+// Are ya yellow?!: #feda6a
+
+// Silver Fox: #d4d4dc
+
+// Deep Matte Grey: #393f4d
+
+// Dark Slate: #1d1e22
