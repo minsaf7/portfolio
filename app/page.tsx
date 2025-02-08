@@ -3,11 +3,11 @@ import About from "@/components/about";
 import { BackgroundBeams } from "@/components/Beam";
 // import { BackgroundBeams } from "@/components/Beam";
 import Educations from "@/components/educations";
-import Experience from "@/components/experience";
+// import Experience from "@/components/experience";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Intro from "@/components/intro";
-import Projects from "@/components/projects";
+// import Projects from "@/components/projects";
 import SectionDivider from "@/components/SectionDivider";
 import Skills from "@/components/skills";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -105,8 +105,8 @@ export default function Home() {
         <Intro />
         <SectionDivider />
         <About />
-        <Projects />
-        <Experience />
+        {/* <Projects />
+        <Experience /> */}
         <Educations />
         <Skills />
       </div>
