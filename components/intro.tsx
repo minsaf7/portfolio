@@ -18,10 +18,12 @@ export default function Intro() {
 
   return (
     <section
-        ref={ref}
+      ref={ref}
       id="home"
-      className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem] z-[900] relative"
+      className="mb-28 max-w-[100%] h-screen text-center sm:mb-0 scroll-mt-[100rem] text-green-500"
     >
+      {/* <NewIntro /> */}
+
       <div className="flex items-center justify-center">
         <div className="relative">
           <motion.div
@@ -32,7 +34,7 @@ export default function Intro() {
               duration: 0.2,
             }}
           >
-            <Image
+            {/* <Image
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=368&h=368&q=100"
               alt="Ricardo portrait"
               width="192"
@@ -40,10 +42,11 @@ export default function Intro() {
               quality="95"
               priority={true}
               className="h-24 w-24 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
-            />
+            /> */}
+            <h1>Mohamed Minsaf</h1>
           </motion.div>
 
-          <motion.span
+          {/* <motion.span
             className="absolute bottom-0 right-0 text-4xl"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -55,20 +58,24 @@ export default function Intro() {
             }}
           >
             👋
-          </motion.span>
+          </motion.span> */}
         </div>
       </div>
 
       <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
+        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl text-green-500"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, Im Ricardo.</span> Im a{" "}
-        <span className="font-bold">full-stack developer</span> with{" "}
-        <span className="font-bold">8 years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{" "}
-        <span className="underline">React (Next.js)</span>.
+        <TextGenerateEffect
+          words={
+            "Full-Stack Software Engineer | React & JavaScript Expert | Skilled in Frontend & Docker Development"
+          }
+        />
+        {/* <span>
+          Full-Stack Software Engineer | React & JavaScript Expert | Skilled in
+          Frontend & Docker Development
+        </span> */}
       </motion.h1>
 
       <motion.div
@@ -79,27 +86,6 @@ export default function Intro() {
           delay: 0.1,
         }}
       >
-        {/* <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-          onClick={() => {
-            setActiveSection("Contact");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact me here
-          <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
-        </Link> */}
-
-        {/* <a
-          className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="/CV.pdf"
-          download
-        >
-          Download CV{" "}
-          <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
-        </a> */}
-
         <a
           className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="https://www.linkedin.com/in/mohamed-minsaaf/"
@@ -127,3 +113,65 @@ export default function Intro() {
     </section>
   );
 }
+
+import { useEffect } from "react";
+import { stagger, useAnimate } from "framer-motion";
+import { cn } from "@/lib/util";
+
+export const TextGenerateEffect = ({
+  words,
+  className,
+  filter = true,
+  duration = 0.5,
+}: {
+  words: string;
+  className?: string;
+  filter?: boolean;
+  duration?: number;
+}) => {
+  const [scope, animate] = useAnimate();
+  let wordsArray = words.split(" ");
+  useEffect(() => {
+    animate(
+      "span",
+      {
+        opacity: 1,
+        filter: filter ? "blur(0px)" : "none",
+      },
+      {
+        duration: duration ? duration : 1,
+        delay: stagger(0.2),
+      }
+    );
+  }, [scope.current]);
+
+  const renderWords = () => {
+    return (
+      <motion.div ref={scope}>
+        {wordsArray.map((word, idx) => {
+          return (
+            <motion.span
+              key={word + idx}
+              className="dark:text-white text-black opacity-0"
+              style={{
+                filter: filter ? "blur(10px)" : "none",
+              }}
+            >
+              {word}{" "}
+            </motion.span>
+          );
+        })}
+      </motion.div>
+    );
+  };
+
+  return (
+    <div className={cn("font-bold", className)}>
+      <div className="mt-4">
+        <div className=" dark:text-white text-black text-2xl leading-snug tracking-wide">
+          {renderWords()}
+        </div>
+      </div>
+    </div>
+  );
+};

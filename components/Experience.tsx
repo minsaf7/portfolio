@@ -68,7 +68,6 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { experiencesData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
-import { FaReact } from "react-icons/fa";
 
 type ExperienceProps = (typeof experiencesData)[number];
 
@@ -78,17 +77,16 @@ export default function Experience() {
   return (
     <section
       ref={ref}
-      className="scroll-mt-28 mb-28 z-[900] relative"
+      className="scroll-mt-28 mb-28 z-[900] relative w-full"
       id="experience"
     >
-      {experiencesData.map((experience, index) => (
-        <ExperienceItem key={index} {...experience} />
-      ))}
+      <SectionHeading>Experience</SectionHeading>
+      <TimelineDemo />
     </section>
   );
 }
 
-function ExperienceItem({ title, description,date,icon,location }: ExperienceProps) {
+function ExperienceItem({ title, description }: ExperienceProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -96,93 +94,123 @@ function ExperienceItem({ title, description,date,icon,location }: ExperiencePro
     offset: ["0 1", "1.33 1"],
   });
 
-  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1.2]);
+  const opacityProgress = useTransform(scrollYProgress, [0.5, 1], [0, 1]);
 
   return (
-    // <motion.div
-    //   ref={ref}
-    //   style={{
-    //     scale: scaleProgess,
-    //     opacity: opacityProgess,
-    //     zIndex: 999,
-    //   }}
-    //   className="group mb-3 sm:mb-8 last:mb-0 border border-white border-opacity-40 bg-[#AAABB8] bg-opacity-30 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] transition-colors duration-300 hover:bg-opacity-80 hover:text-white dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75 relative"
-    // >
-    //   <section
-    //     className="max-w-[72rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] transition sm:group-even:pl-8 "
-    //     style={{
-    //       zIndex: 999,
-    //     }}
-    //   >
-    //     <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full ">
-    //       <div>
-            
-    //       </div>
-    //       <h3 className="text-2xl font-semibold group-hover:text-[#66fcf1] transition-colors text-white">
-    //         {title}
-    //       </h3>
-    //       <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70 group-hover:text-white transition-colors">
-    //         {description}
-    //       </p>
-    //     </div>
-    //   </section>
-
-    // </motion.div>
     <motion.div
-    ref={ref}
-    style={{
-      scale: scaleProgess,
-      opacity: opacityProgess,
-      zIndex: 999,
-    }}
-    className="group mb-3 sm:mb-8 last:mb-0 border border-white border-opacity-40 bg-[#AAABB8] bg-opacity-30 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] transition-colors duration-300 hover:bg-opacity-80 hover:text-white dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75 relative"
-  >
-    <section
-      className="max-w-[72rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] transition sm:group-even:pl-8"
+      ref={ref}
       style={{
-        zIndex: 999,
+        // scale: scaleProgress,
+        // opacity: opacityProgress,
+        scale: scaleProgress,
+        opacity: opacityProgress,
       }}
+      className="group mb-8 last:mb-0 w-full max-w-[62rem] pb-10"
     >
-      <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full">
-        <div className="flex items-center">
-          <div className="text-4xl text-[#45a29e] mr-4">{icon}</div>
-          <div>
-            <h3 className="text-2xl font-semibold group-hover:text-[#66fcf1] transition-colors text-white">
-              {title}
-            </h3>
-            <p className="text-sm text-gray-400">{location}</p>
-          </div>
+      <section className="bg-gray-100 border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] hover:bg-gray-200 transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 dark:hover:bg-white/20">
+        <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full sm:group-even:ml-[18rem]">
+          <h3 className="text-2xl font-semibold">{title}</h3>
+          <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
+            {description}
+          </p>
         </div>
-        <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70 group-hover:text-white transition-colors">
-          {description}
-        </p>
-        <p className="mt-4 text-gray-500 dark:text-gray-400">{date}</p>
-      </div>
 
-      <div className="absolute hidden sm:block top-8 -right-40 w-[10rem] h-[10rem] text-[#61DAFB]">
-        <FaReact className="w-full h-full 
+        {/* <Image
+          src={imageUrl}
+          alt={`${title} image`}
+          quality={95}
+          className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl
           transition 
           group-hover:scale-[1.04]
           group-hover:-translate-x-3
           group-hover:translate-y-3
           group-hover:-rotate-2
-
           group-even:group-hover:translate-x-3
           group-even:group-hover:translate-y-3
-          group-even:group-hover:rotate-2" />
-      </div>
-      {/* <div className="flex flex-col sm:flex-row items-start sm:items-center bg-gray-800 p-6 rounded-lg shadow-lg text-white">
-      <div className="text-teal-400 font-semibold text-sm sm:text-lg mb-2 sm:mb-0 sm:w-1/4">
-        {date}
-      </div>
-      <div className="sm:w-3/4 sm:pl-6">
-        <h3 className="text-teal-400 font-bold text-lg">{title}</h3>
-        <p className="text-gray-400 mb-2">{location}</p>
-        <p className="text-gray-300 mb-4">{description}</p>
-      </div>
-    </div> */}
-    </section>
-  </motion.div>
+          group-even:group-hover:rotate-2
+          group-even:right-[initial] group-even:-left-40"
+        /> */}
+      </section>
+    </motion.div>
   );
 }
+
+import React from "react";
+import { Timeline } from "./TimeLine";
+import SectionHeading from "./SectionHeading";
+import { WobbleCard } from "./WobbleCard";
+// import { Timeline } from "@/components/ui/timeline";
+
+export function TimelineDemo() {
+  const data = [
+    {
+      title: "Software Engineer",
+      content: <ExperienceCard {...experiencesData[2]} />,
+    },
+    {
+      title: "Associate Software Engineer",
+      content: <ExperienceCard {...experiencesData[1]} />,
+    },
+    {
+      title: "Intern Software Engineer",
+      content: <ExperienceCard {...experiencesData[2]} />,
+    },
+  ];
+  return (
+    <div className="w-full">
+      <Timeline data={data} />
+    </div>
+  );
+}
+
+const ExperienceCard = ({
+  date,
+  description,
+  icon,
+  location,
+  title,
+  responsibilities,
+}: ExperienceProps) => {
+  return (
+    <motion.div
+      className="p-1 rounded-xl w-full max-w-4xl"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* Hover border gradient */}
+      <div className="absolute inset-0 p-1 rounded-xl bg-gradient-to-r from-transparent to-transparent hover:from-blue-400 hover:to-blue-600 transition-all duration-300 pointer-events-none"></div>
+
+      {/* Card content */}
+      <div className="relative bg-white/10 backdrop-blur-lg p-6 rounded-lg shadow-lg flex flex-col gap-6 border border-transparent">
+        {/* Header Section */}
+        <div className="flex items-center gap-4">
+          <div className="text-teal-300 text-3xl">{icon}</div>
+          <div>
+            <h3 className="text-xl md:text-2xl font-semibold text-teal-300">
+              {location}
+            </h3>
+            <p className="text-gray-400 text-sm md:text-base">
+              {location} • {experiencesData[0].date}
+            </p>
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-gray-300 mt-2 text-sm md:text-base">{description}</p>
+
+        {/* Responsibilities */}
+        <div className="text-gray-300 mt-4">
+          <h4 className="font-semibold text-teal-300">Responsibilities:</h4>
+          <ul className="list-disc list-inside mt-2 space-y-2">
+            {responsibilities.map((responsibility, idx) => (
+              <li key={idx} className="text-sm md:text-base">
+                {responsibility}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
