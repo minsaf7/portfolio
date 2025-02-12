@@ -1,0 +1,8 @@
+html[data-theme="theme4"] {
+    --color-primary: #F2CC8F;
+    --color-primary-x: #81B29A;
+    --color-secondary: #3D405B;
+    --color-secondary-x: #E07A5F;
+    --color-teretiary: #EAB69F;
+    --color-teretiary-x: #F4F1DE;
+}

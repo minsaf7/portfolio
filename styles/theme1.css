@@ -1,0 +1,12 @@
+html[data-theme="theme1"] {
+  /* --color-primary: #180b2b; */
+  --color-primary: #194a7a;
+  --color-primary-x: #476f95;
+  --color-secondary: #7593af;
+  --color-secondary-x: #a3b7ca;
+  --color-teretiary: #c4504c;
+  --color-teretiary-x: #ed8b92;
+
+  --text-primary: #FFEC8B;
+  --text-secondary: #A3DAFF;
+}
