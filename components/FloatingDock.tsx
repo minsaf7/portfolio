@@ -17,18 +17,11 @@ export function FloatingDockDemo({pathName}:{pathName:string}) {
       title: "Projects",
       icon: (
         <IconTerminal2 
-        // className="h-full w-full text-neutral-500 dark:text-neutral-300"
-        className={`${pathName === '/projects' && 'text-neutral-500'} h-full`}
+        className="h-full w-full text-neutral-500 dark:text-neutral-300"
+        // className={`${pathName === '/projects' && 'text-red-500'} h-full`}
          />
       ),
       href: "/projects",
-    },
-    {
-      title: "Resume",
-      icon: (
-        <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "/resume",
     },
     {
       title: "Home",
@@ -38,12 +31,20 @@ export function FloatingDockDemo({pathName}:{pathName:string}) {
       href: "/",
     },
     {
-      title: "LinkedIn",
+      title: "Resume",
       icon: (
-        <IconLinkedIn />
+        <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://www.linkedin.com/in/mohamed-minsaaf/",
+      href: "/resume",
     },
+    
+    // {
+    //   title: "LinkedIn",
+    //   icon: (
+    //     <IconLinkedIn />
+    //   ),
+    //   href: "https://www.linkedin.com/in/mohamed-minsaaf/",
+    // },
 
     // {
     //   title: "Twitter",
@@ -52,19 +53,20 @@ export function FloatingDockDemo({pathName}:{pathName:string}) {
     //   ),
     //   href: "#",
     // },
-    {
-      title: "GitHub",
-      icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
+    // {
+    //   title: "GitHub",
+    //   icon: (
+    //     <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    //   ),
+    //   href: "#",
+    // },
   ];
   return (
     <div className="flex items-end justify-center  w-full">
       <FloatingDock
-        mobileClassName="translate-y-20" // only for demo, remove for production
+        mobileClassName="translate-y-20 " // only for demo, remove for production
         items={links}
+        // pathName={pathName}
       />
     </div>
   );
