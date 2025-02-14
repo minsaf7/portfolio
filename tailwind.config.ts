@@ -1,5 +1,6 @@
 import { nextui } from "@nextui-org/theme";
 const defaultTheme = require("tailwindcss/defaultTheme");
+import daisyui from "daisyui"
 
 const colors = require("tailwindcss/colors");
 const withMT = require("@material-tailwind/react/utils/withMT");
@@ -50,7 +51,7 @@ module.exports = {
       },
     },
   },
-  plugins: [addVariablesForColors, nextui(), require("tailwindcss-animate")],
+  plugins: [addVariablesForColors, nextui(), require("tailwindcss-animate"),daisyui],
   darkMode: ["class", "class"],
 };
 

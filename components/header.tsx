@@ -138,7 +138,7 @@ function Example() {
             {/* <option value="theme1">Theme 1</option> */}
             <option value="theme2">Olive Green</option>
             {/* <option value="theme3">Dusty Rose</option> */}
-            <option value="theme4">TPale Gold</option>
+            {/* <option value="theme4">Pale Gold</option> */}
             {/* <option value="theme5">Deep Blue</option> */}
             {/* <option value="theme6">Sunflower Yellow</option> */}
           </Select>

@@ -7,6 +7,6 @@ html[data-theme="theme1"] {
   --color-teretiary: #c4504c;
   --color-teretiary-x: #ed8b92;
 
-  --text-primary: #FFEC8B;
-  --text-secondary: #A3DAFF;
+  --text-primary: #A3DAFF;
+  --text-secondary: #FFEC8B;
 }

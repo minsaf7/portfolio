@@ -30,7 +30,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen  text-center px-6 text-txt-primary">
+    <div className="relative flex flex-col items-center justify-center min-h-screen  text-center px-6">
       {/* Animated Glowing Stars */}
       {[
         { top: "10%", left: "15%" },
@@ -69,17 +69,16 @@ export function HeroSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-6xl font-bold leading-tight md:text-8xl"
+        className="text-6xl font-bold leading-tight md:text-8xl text-txt-primary"
       >
-        Hi. I'm <span className="italic">Minsaf.</span>
+        Hi. I&apos;m <span className="italic">Minsaf.</span>
       </motion.h1>
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-4xl font-bold mt-4 md:text-5xl"
+        className="text-4xl font-bold mt-4 md:text-5xl text-txt-primary"
       >
-      
         Software Engineer.
       </motion.h2>
 
@@ -88,7 +87,7 @@ export function HeroSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="text-lg mt-6 text-[#3f5b51] max-w-lg"
+        className="text-lg mt-6 text-[#3f5b51] max-w-lg text-txt-secondary"
       >
         I build scalable, performant, and accessible web applications that
         enhance user experiences.
