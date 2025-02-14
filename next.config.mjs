@@ -4,7 +4,7 @@ const nextConfig = {
         // domains: ['images.unsplash.com','www.directfn.com','www.docker.com','v4.material-ui.com'],
         unoptimized:true
       },
-      // output: 'export',
+      output: 'export',
       distDir: 'dist',
 };
 
