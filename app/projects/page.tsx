@@ -22,7 +22,7 @@ const Projects = () => {
 
 export default Projects;
 
-import { cn } from "@/lib/utils";
+
 
 import Image from "next/image";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
@@ -35,7 +35,7 @@ type Testimonial = {
   designation: string;
   src: string;
 };
-export const AnimatedTestimonials = ({
+const AnimatedTestimonials = ({
   testimonials,
   autoplay = false,
   handleSelectProject,
