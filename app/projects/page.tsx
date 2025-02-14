@@ -14,7 +14,7 @@ const Projects = () => {
     <div className="w-screen h-screen m-50">
       <div className="  flex  h-[80vh] overflow-scroll pt-16">
         {/* <BentoGridDemo handleSelectProject={handleSelectProject} /> */}
-        <AnimatedTestimonialsDemo handleSelectProject={handleSelectProject}/>
+        <AnimatedTestimonialsDemo handleSelectProject={handleSelectProject} />
       </div>
     </div>
   );
@@ -24,15 +24,10 @@ export default Projects;
 
 import { cn } from "@/lib/utils";
 
-
-
-
-
 import Image from "next/image";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 
-
-import { useEffect,  } from "react";
+import { useEffect } from "react";
 
 type Testimonial = {
   quote: string;
@@ -43,7 +38,7 @@ type Testimonial = {
 export const AnimatedTestimonials = ({
   testimonials,
   autoplay = false,
-  handleSelectProject
+  handleSelectProject,
 }: {
   testimonials: Testimonial[];
   autoplay?: boolean;
@@ -124,7 +119,6 @@ export const AnimatedTestimonials = ({
           </div>
         </div>
 
-       
         <div className="flex justify-between flex-col py-4">
           <motion.div
             key={active}
@@ -145,13 +139,9 @@ export const AnimatedTestimonials = ({
               ease: "easeInOut",
             }}
           >
-            <h3 className="text-2xl font-bold">
-              {testimonials[active].name}
-            </h3>
-            <p className="text-sm ">
-              {testimonials[active].designation}
-            </p>
-           
+            <h3 className="text-2xl font-bold">{testimonials[active].name}</h3>
+            <p className="text-sm ">{testimonials[active].designation}</p>
+
             <motion.p className="text-lg ">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
@@ -177,7 +167,11 @@ export const AnimatedTestimonials = ({
                 </motion.span>
               ))}
             </motion.p>
-            <button onClick={()=>handleSelectProject(testimonials[active].name)}>More</button>
+            <button
+              onClick={() => handleSelectProject(testimonials[active].name)}
+            >
+              More
+            </button>
           </motion.div>
           <div className="flex gap-4 pt-12 md:pt-0">
             <button
@@ -199,11 +193,13 @@ export const AnimatedTestimonials = ({
   );
 };
 
-
-
 // import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
-export function AnimatedTestimonialsDemo({handleSelectProject}:{handleSelectProject: (project: string) => void;}) {
+const AnimatedTestimonialsDemo = ({
+  handleSelectProject,
+}: {
+  handleSelectProject: (project: string) => void;
+}) => {
   const testimonials = [
     {
       quote:
@@ -241,5 +237,10 @@ export function AnimatedTestimonialsDemo({handleSelectProject}:{handleSelectProj
     //   src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     // },
   ];
-  return <AnimatedTestimonials testimonials={testimonials} handleSelectProject={handleSelectProject}/>;
-}
+  return (
+    <AnimatedTestimonials
+      testimonials={testimonials}
+      handleSelectProject={handleSelectProject}
+    />
+  );
+};
