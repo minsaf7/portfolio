@@ -1,21 +1,4 @@
 "use client";
-
-import { BackgroundBeams } from "@/components/Beam";
-// import { BackgroundBeams } from "@/components/Beam";
-import Educations from "@/components/educations";
-import { FloatingDockDemo } from "@/components/FloatingDock";
-// import Experience from "@/components/experience";
-import Footer from "@/components/footer";
-
-import Intro from "@/components/intro";
-
-// import { NavigationDock } from "@/components/NavigationDock/NavigationDock";
-// import Projects from "@/components/projects";
-import SectionDivider from "@/components/SectionDivider";
-import Skills from "@/components/skills";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
-import { changeTheme } from "@/lib/utils";
-
 import React from "react";
 
 export default function Home() {
@@ -28,7 +11,7 @@ export default function Home() {
 
 import { motion } from "framer-motion";
 
-export function HeroSection() {
+ const HeroSection =() =>{
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen  text-center px-6">
       {/* Animated Glowing Stars */}
