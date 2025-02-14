@@ -129,7 +129,7 @@ function Example() {
               // Make the text of each option black on Windows
               "*:text-black"
             )}
-            onChange={(e) => {
+            onChange={(e:any) => {
               changeTheme(e.target.value);
               setTheme(e.target.value);
             }}
@@ -142,150 +142,9 @@ function Example() {
             {/* <option value="theme5">Deep Blue</option> */}
             {/* <option value="theme6">Sunflower Yellow</option> */}
           </Select>
-          {/* <ChevronDownIcon
-            className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-white/60"
-            aria-hidden="true"
-          /> */}
+         
         </div>
       </Field>
     </div>
   );
 }
-
-// import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-// import {
-//   ArchiveBoxXMarkIcon,
-//   PencilIcon,
-//   Square2StackIcon,
-//   TrashIcon,
-// } from "@heroicons/react/16/solid";
-
-// export default function ExampleTheme() {
-//   return (
-//     <div className="fixed top-24 w-52 text-right">
-//       <Menu __demoMode>
-//         <MenuButton className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-//           Options
-//           <ChevronDownIcon className="size-4 fill-white/60" />
-//         </MenuButton>
-
-//         <MenuItems
-//           transition
-//           anchor="bottom end"
-//           className="w-52 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
-//         >
-//           <MenuItem>
-//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-//               <PencilIcon className="size-4 fill-white/30" />
-//               Edit
-//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-//                 ⌘E
-//               </kbd>
-//             </button>
-//           </MenuItem>
-//           <MenuItem>
-//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-//               <Square2StackIcon className="size-4 fill-white/30" />
-//               Duplicate
-//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-//                 ⌘D
-//               </kbd>
-//             </button>
-//           </MenuItem>
-//           <div className="my-1 h-px bg-white/5" />
-//           <MenuItem>
-//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-//               <ArchiveBoxXMarkIcon className="size-4 fill-white/30" />
-//               Archive
-//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-//                 ⌘A
-//               </kbd>
-//             </button>
-//           </MenuItem>
-//           <MenuItem>
-//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-//               <TrashIcon className="size-4 fill-white/30" />
-//               Delete
-//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-//                 ⌘D
-//               </kbd>
-//             </button>
-//           </MenuItem>
-//         </MenuItems>
-//       </Menu>
-//     </div>
-//   );
-// }
-
-// components/FontSelector.tsx
-
-const fonts = [
-  { name: "Inter", value: "font-inter" },
-  { name: "Roboto", value: "font-roboto" },
-  { name: "Open Sans", value: "font-open-sans" },
-  { name: "Lato", value: "font-lato" },
-];
-
-export default function FontSelector() {
-  const [selectedFont, setSelectedFont] = useState(fonts[0].value);
-
-  const handleFontChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedFont(event.target.value);
-    document.documentElement.classList.remove(
-      ...fonts.map((font) => font.value)
-    );
-    document.documentElement.classList.add(event.target.value);
-  };
-
-  return (
-    <select
-      value={selectedFont}
-      onChange={handleFontChange}
-      className="p-2 border rounded"
-    >
-      {fonts.map((font) => (
-        <option key={font.value} value={font.value}>
-          {font.name}
-        </option>
-      ))}
-    </select>
-  );
-}
-
-
-
-// import { Description, Field, Label, Select } from '@headlessui/react'
-// import { ChevronDownIcon } from '@heroicons/react/20/solid'
-// import clsx from 'clsx'
-
-// export default function Example() {
-//   return (
-//     <div className="w-full max-w-md px-4">
-//       <Field>
-//         <Label className="text-sm/6 font-medium text-white">Project status</Label>
-//         <Description className="text-sm/6 text-white/50">This will be visible to clients on the project.</Description>
-//         <div className="relative">
-//           <Select
-//             className={clsx(
-//               'mt-3 block w-full appearance-none rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white',
-//               'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
-//               // Make the text of each option black on Windows
-//               '*:text-black'
-//             )}
-//           >
-//             <option value="active">Active</option>
-//             <option value="paused">Paused</option>
-//             <option value="delayed">Delayed</option>
-//             <option value="canceled">Canceled</option>
-//           </Select>
-//           <ChevronDownIcon
-//             className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-white/60"
-//             aria-hidden="true"
-//           />
-//         </div>
-//       </Field>
-//     </div>
-//   )
-// }
-
-// import { Select } from '@headlessui/react'
