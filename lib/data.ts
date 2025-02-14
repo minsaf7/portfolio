@@ -35,16 +35,31 @@ export const links = [
 
 export const experiencesData = [
   {
+    title: "Senior Software Engineer",
+    location: "DirectFN, Sri Lanka",
+    description:
+      "Led the development of an advanced version of a Web Content Management System tailored for the fintech domain. Responsibilities included designing server-driven UI components with React and TypeScript, backend development with Node.js and MongoDB, and deploying the application using Docker.",
+    icon: React.createElement(LuGraduationCap),
+    date: "2022 Dec - Present",
+    responsibilities: [
+      "Leading the development and scalability of a web content management system (CMS) tailored for financial institutions, built on a server-driven UI architecture similar to a no-code website builder.",
+      "Enhancing deployment processes by implementing multi-stage Docker builds, significantly reducing build size and improving efficiency.",
+      "Collaborating with cross-functional teams, including UI/UX designers and department heads, to align product features with business requirements while ensuring UI/UX compliance.",
+      "Contributing to project planning and architectural decisions alongside technical leads, improving system design and performance.",
+      "Contributed to the development of a React Native mobile app for real-time market data streaming, charts, and analytics, leveraging the same server-driven UI concept used by the web CMS. Focused on bug fixes and QA-reported issues to ensure app stability.",
+    ],
+  },
+  {
     title: "Software Engineer",
     location: "DirectFN, Sri Lanka",
     description:
-      "Led the development of an advanced version of an existing Web Content Management System tailored for the fintech domain. Responsibilities included designing server-driven UI components with React and TypeScript, backend development with Node.js and MongoDB, and deploying the application using Docker.",
+      "Led the development of an advanced version of a Web Content Management System tailored for the fintech domain. Responsibilities included designing server-driven UI components with React and TypeScript, backend development with Node.js and MongoDB, and deploying the application using Docker.",
     icon: React.createElement(LuGraduationCap),
     date: "2022 Dec - Present",
     responsibilities: [
       "Researching and applying the latest and best technologies to enhance the system's performance and user experience.",
       "Developing financial widgets to provide robust and efficient solutions for our clients.",
-      "Deploying the application using Docker to ensure seamless integration and scalability.",
+      "Developed core features for the web CMS, working closely with UI/UX teams and department heads to ensure the product met usability and business requirements.",
     ],
   },
 
@@ -86,7 +101,7 @@ export const projectsData = [
     imageUrl: corpcommentImg,
   },
   {
-    title: "FinPOS",
+    title: "BLPOS",
     description:
       "A comprehensive POS and Order Management System tailored for retail operations. I was the frontend developer, focusing on integrating seamless order processing, inventory management, and real-time data synchronization. The system leverages modern frontend technologies with robust backend support.",
     tags: ["React", "TypeScript", "Redux", ".NET"],
@@ -141,11 +156,11 @@ export const educationData = [
     desc: "Completed with a GPA of 3.5, focusing on foundational computing subjects such as algorithms, data structures, and basic system design. Developed practical projects using Java and SQL for small-scale applications.",
     premises: "NIBM, Sri Lanka",
   },
-  {
-    id: 4,
-    title: "GCE A/L",
-    date: "2013 - 2016",
-    desc: "Passed with 2 Bs and a C in Accounting, Business Studies, and Economics.",
-    premises: "Royal College Colombo, Sri Lanka",
-  },
+  // {
+  //   id: 4,
+  //   title: "GCE A/L",
+  //   date: "2013 - 2016",
+  //   desc: "Passed with 2 Bs and a C in Accounting, Business Studies, and Economics.",
+  //   premises: "Royal College Colombo, Sri Lanka",
+  // },
 ];

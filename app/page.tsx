@@ -1,159 +1,97 @@
 "use client";
-import About from "@/components/about";
+
 import { BackgroundBeams } from "@/components/Beam";
 // import { BackgroundBeams } from "@/components/Beam";
 import Educations from "@/components/educations";
+import { FloatingDockDemo } from "@/components/FloatingDock";
 // import Experience from "@/components/experience";
 import Footer from "@/components/footer";
-import Header from "@/components/header";
+
 import Intro from "@/components/intro";
+
+// import { NavigationDock } from "@/components/NavigationDock/NavigationDock";
 // import Projects from "@/components/projects";
 import SectionDivider from "@/components/SectionDivider";
 import Skills from "@/components/skills";
-import { motion, useScroll, useTransform } from "framer-motion";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { changeTheme } from "@/lib/utils";
+
 import React from "react";
-
-const gradientVariants = {
-  animate: {
-    x: [
-      "0%",
-      "10%",
-      "15%",
-      "25%",
-      "35%",
-      "45%",
-      "55%",
-      "65%",
-      "75%",
-      "85%",
-      "95%",
-      "100%",
-      "90%",
-      "80%",
-      "70%",
-      "60%",
-      "50%",
-      "40%",
-      "30%",
-      "20%",
-      "10%",
-      "0%",
-    ],
-    y: [
-      "0%",
-      "10%",
-      "20%",
-      "30%",
-      "40%",
-      "50%",
-      "60%",
-      "70%",
-      "80%",
-      "90%",
-      "100%",
-      "90%",
-      "80%",
-      "70%",
-      "60%",
-      "50%",
-      "40%",
-      "30%",
-      "20%",
-      "10%",
-      "0%",
-    ],
-    rotate: [0, 90, 180, 270, 360],
-    scale: [1, 1.1, 1.2, 1.1, 1],
-    transition: {
-      x: {
-        duration: 20,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-      y: {
-        duration: 25,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-      rotate: {
-        duration: 30,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-      scale: {
-        duration: 10,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  },
-};
-
-const gradients = [
-  "radial-gradient(circle, rgba(255,0,150,0.5) 10%, transparent 70%)",
-  "radial-gradient(circle, rgba(0,150,255,0.5) 0%, transparent 70%)",
-  "radial-gradient(circle, rgba(255,255,0,0.5) 0%, transparent 70%)",
-  "radial-gradient(circle, rgba(0,255,150,0.5) 0%, transparent 70%)",
-  "radial-gradient(circle, rgba(255,0,255,0.5) 0%, transparent 70%)",
-  "radial-gradient(circle, rgba(150,255,0,0.5) 0%, transparent 70%)",
-];
 
 export default function Home() {
   return (
-    <main className="main flex flex-col items-center px-4 ">
-      <div className="mainDiv">
-        <Intro />
-        <SectionDivider />
-        <About />
-        {/* <Projects />
-        <Experience /> */}
-        <Educations />
-        <Skills />
-      </div>
+    <main className="main flex flex-col w-full h-full">
+      <HeroSection />
     </main>
   );
 }
 
-// <main className="main">
-//       <div className="mainDiv">
-//         <Intro />
-//         <SectionDivider />
-//         <About />
-//         <Projects />
-//         <Experience />
-//         <Educations />
-//         <Skills />
-//         <Footer />
-//       </div>
-//     </main>
+import { motion } from "framer-motion";
 
-// <div className="relative h-screen w-full bg-white">
-//   <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-//     {gradients.map((gradient, index) => (
-//       <motion.div
-//         key={index}
-//         className="absolute"
-//         style={{
-//           width: "250px",
-//           height: "250px",
-//           backgroundImage: gradient,
-//           borderRadius: "50%",
-//           top: `${Math.random() * 80}%`,
-//           left: `${Math.random() * 80}%`,
-//         }}
-//         variants={gradientVariants}
-//         animate="animate"
-//       />
-//     ))}
-//   </div>
-//   <main className="relative flex flex-col items-center px-4 z-10">
-// <Intro />
-// <SectionDivider />
-// <About />
-// <Projects />
-// <Experience />
-// <Educations />
-// <Skills />
-// <Footer />
-//   </main>
-// </div>
+export function HeroSection() {
+  return (
+    <div className="relative flex flex-col items-center justify-center min-h-screen  text-center px-6">
+      {/* Animated Glowing Stars */}
+      {[
+        { top: "10%", left: "15%" },
+        { top: "20%", right: "10%" },
+        { bottom: "15%", left: "5%" },
+        { bottom: "25%", right: "15%" },
+        // { top: "50%", left: "50%" },
+      ].map((style, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={{
+            opacity: 1,
+            scale: [1.3, 1.5, 1.3], // Bigger Stars!
+            filter: [
+              "drop-shadow(0 0 15px rgba(255, 255, 255, 0.9))",
+              "drop-shadow(0 0 25px rgba(255, 255, 255, 1))",
+              "drop-shadow(0 0 15px rgba(255, 255, 255, 0.9))",
+            ],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+          }}
+          className="absolute text-white text-6xl" // Increased from text-4xl to text-6xl
+          style={style}
+        >
+          ✦
+        </motion.div>
+      ))}
+
+      {/* Main Heading */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-6xl font-bold leading-tight md:text-8xl text-txt-primary"
+      >
+        Hi. I&apos;m <span className="italic">Minsaf.</span>
+      </motion.h1>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="text-4xl font-bold mt-4 md:text-5xl text-txt-primary"
+      >
+        Software Engineer.
+      </motion.h2>
+
+      {/* Subtext */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="text-lg mt-6 text-[#3f5b51] max-w-lg text-txt-secondary"
+      >
+        I build scalable, performant, and accessible web applications that
+        enhance user experiences.
+      </motion.p>
+    </div>
+  );
+}

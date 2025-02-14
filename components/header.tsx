@@ -1,66 +1,291 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { links } from "@/lib/data";
-import Link from "next/link";
-import clsx from "clsx";
-import { useActiveSectionContext } from "@/context/useActiveSectionContext";
-// import { useActiveSectionContext } from "@/context/active-section-context";
+import { changeTheme } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import React, { useContext, useEffect, useState } from "react";
+import { BsProjectorFill } from "react-icons/bs";
+import { CgUser } from "react-icons/cg";
+import { HiHome } from "react-icons/hi";
 
-export default function Header() {
-  const { activeSection, setActiveSection, setTimeOfLastClick } =
-    useActiveSectionContext();
+export function Header() {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  const path = usePathname();
+
+  const generatePathComponent = () => {
+    switch (path) {
+      case "/projects":
+        return <BsProjectorFill />;
+
+      case "/resume":
+        return <CgUser />;
+      default:
+        return <HiHome />;
+    }
+  };
+
+  const generateTitle = () => {
+    switch (path) {
+      case "/projects":
+        return <p className="text-xs text-white">Projects</p>;
+
+      case "/resume":
+        return <p className="text-xs text-white">Resume</p>;
+      default:
+        return <p className="text-xs text-white">Home</p>;
+    }
+  };
+
+  useEffect(() => {
+    const timerID = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(timerID);
+  }, []);
+
+  const formatDate = (date: any) => {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const dayName = days[date.getDay()];
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    return `${dayName} ${day} ${month}`;
+  };
+
+  const formatTime = (date: any) => {
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12; // Convert to 12-hour format
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${hours}.${formattedMinutes} ${ampm}`;
+  };
 
   return (
-    <header className="z-[999] relative">
-      <motion.div
-        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75"
-        initial={{ y: -100, x: "-50%", opacity: 0 }}
-        animate={{ y: 0, x: "-50%", opacity: 1 }}
-      ></motion.div>
+    <header
+      // className="flex flex-row backdrop-blur-sm bg-white/10  rounded-lg  border border-white/10"
+      className={
+        "flex flex-row justify-between bg-gray-800 bg-opacity-50  shadow-lg backdrop-blur-md max-sm:px-8 py-1 px-2"
+      }
+    >
+      <div className="flex flex-row gap-3 items-center">
+        {generatePathComponent()}
+        {generateTitle()}
+        <Example />
+      </div>
 
-      <nav className="flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-        <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-500 sm:w-[initial] sm:flex-nowrap sm:gap-5">
-          {links.map((link) => (
-            <motion.li
-              className="h-3/4 flex items-center justify-center relative"
-              key={link.hash}
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <Link
-                className={clsx(
-                  "flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition dark:text-gray-500 dark:hover:text-gray-300",
-                  {
-                    "text-gray-950 dark:text-gray-200":
-                      activeSection === link.name,
-                  }
-                )}
-                href={link.hash}
-                onClick={() => {
-                  setActiveSection(link.name);
-                  setTimeOfLastClick(Date.now());
-                }}
-              >
-                {link.name}
+      <div className="flex flex-row items-center text-xs text-white">
+        <p
+          className="px-2"
+          style={{
+            fontSize: 13,
+          }}
+        >
+          {formatDate(currentTime)}
+        </p>
 
-                {link.name === activeSection && (
-                  <motion.span
-                    className="bg-gray-100 rounded-full absolute inset-0 -z-10 dark:bg-gray-800"
-                    layoutId="activeSection"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                  ></motion.span>
-                )}
-              </Link>
-            </motion.li>
-          ))}
-        </ul>
-      </nav>
+        <p
+          style={{
+            fontSize: 13,
+          }}
+        >
+          {formatTime(currentTime)}
+        </p>
+      </div>
     </header>
   );
 }
+
+import { Field, Select } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import clsx from "clsx";
+import { useAppContext } from "@/context/appContext";
+
+function Example() {
+  const { theme, setTheme } = useAppContext();
+  return (
+    <div className="w-full max-w-md">
+      <Field>
+        <div className="relative">
+          <Select
+            className={clsx(
+              " block w-full appearance-none border-none bg-transparent text-xs text-white",
+              "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
+              // Make the text of each option black on Windows
+              "*:text-black"
+            )}
+            onChange={(e) => {
+              changeTheme(e.target.value);
+              setTheme(e.target.value);
+            }}
+          >
+            <option value="theme1">Charcoal Blue </option>
+            {/* <option value="theme1">Theme 1</option> */}
+            <option value="theme2">Olive Green</option>
+            {/* <option value="theme3">Dusty Rose</option> */}
+            {/* <option value="theme4">Pale Gold</option> */}
+            {/* <option value="theme5">Deep Blue</option> */}
+            {/* <option value="theme6">Sunflower Yellow</option> */}
+          </Select>
+          {/* <ChevronDownIcon
+            className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-white/60"
+            aria-hidden="true"
+          /> */}
+        </div>
+      </Field>
+    </div>
+  );
+}
+
+// import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+// import {
+//   ArchiveBoxXMarkIcon,
+//   PencilIcon,
+//   Square2StackIcon,
+//   TrashIcon,
+// } from "@heroicons/react/16/solid";
+
+// export default function ExampleTheme() {
+//   return (
+//     <div className="fixed top-24 w-52 text-right">
+//       <Menu __demoMode>
+//         <MenuButton className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+//           Options
+//           <ChevronDownIcon className="size-4 fill-white/60" />
+//         </MenuButton>
+
+//         <MenuItems
+//           transition
+//           anchor="bottom end"
+//           className="w-52 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+//         >
+//           <MenuItem>
+//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+//               <PencilIcon className="size-4 fill-white/30" />
+//               Edit
+//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
+//                 ⌘E
+//               </kbd>
+//             </button>
+//           </MenuItem>
+//           <MenuItem>
+//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+//               <Square2StackIcon className="size-4 fill-white/30" />
+//               Duplicate
+//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
+//                 ⌘D
+//               </kbd>
+//             </button>
+//           </MenuItem>
+//           <div className="my-1 h-px bg-white/5" />
+//           <MenuItem>
+//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+//               <ArchiveBoxXMarkIcon className="size-4 fill-white/30" />
+//               Archive
+//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
+//                 ⌘A
+//               </kbd>
+//             </button>
+//           </MenuItem>
+//           <MenuItem>
+//             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+//               <TrashIcon className="size-4 fill-white/30" />
+//               Delete
+//               <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
+//                 ⌘D
+//               </kbd>
+//             </button>
+//           </MenuItem>
+//         </MenuItems>
+//       </Menu>
+//     </div>
+//   );
+// }
+
+// components/FontSelector.tsx
+
+const fonts = [
+  { name: "Inter", value: "font-inter" },
+  { name: "Roboto", value: "font-roboto" },
+  { name: "Open Sans", value: "font-open-sans" },
+  { name: "Lato", value: "font-lato" },
+];
+
+export default function FontSelector() {
+  const [selectedFont, setSelectedFont] = useState(fonts[0].value);
+
+  const handleFontChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedFont(event.target.value);
+    document.documentElement.classList.remove(
+      ...fonts.map((font) => font.value)
+    );
+    document.documentElement.classList.add(event.target.value);
+  };
+
+  return (
+    <select
+      value={selectedFont}
+      onChange={handleFontChange}
+      className="p-2 border rounded"
+    >
+      {fonts.map((font) => (
+        <option key={font.value} value={font.value}>
+          {font.name}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+
+
+// import { Description, Field, Label, Select } from '@headlessui/react'
+// import { ChevronDownIcon } from '@heroicons/react/20/solid'
+// import clsx from 'clsx'
+
+// export default function Example() {
+//   return (
+//     <div className="w-full max-w-md px-4">
+//       <Field>
+//         <Label className="text-sm/6 font-medium text-white">Project status</Label>
+//         <Description className="text-sm/6 text-white/50">This will be visible to clients on the project.</Description>
+//         <div className="relative">
+//           <Select
+//             className={clsx(
+//               'mt-3 block w-full appearance-none rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white',
+//               'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
+//               // Make the text of each option black on Windows
+//               '*:text-black'
+//             )}
+//           >
+//             <option value="active">Active</option>
+//             <option value="paused">Paused</option>
+//             <option value="delayed">Delayed</option>
+//             <option value="canceled">Canceled</option>
+//           </Select>
+//           <ChevronDownIcon
+//             className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-white/60"
+//             aria-hidden="true"
+//           />
+//         </div>
+//       </Field>
+//     </div>
+//   )
+// }
+
+// import { Select } from '@headlessui/react'

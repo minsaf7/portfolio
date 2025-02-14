@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter,Open_Sans, Roboto, Montserrat, Lato, Playfair_Display } from "next/font/google";
 import "./globals.css";
-// import StarsCanvas from "@/components/ui/StarBackground";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import ActiveSectionContextProvider from "@/context/useActiveSectionContext";
-import Header from "@/components/header";
-import ThemeContextProvider from "@/context/useTheme";
-import StarsCanvas from "@/components/starCanvas";
-import Footer from "@/components/footer";
-const inter = Inter({ subsets: ["latin"] });
+import { NavigationDock } from "@/components/NavigationDock/NavigationDock";
+import { Header } from "@/components/header";
+import GlowingGradient from "./Background";
+import { AppProvider } from "@/context/appContext";
 
 export const metadata: Metadata = {
   title: "Mohamed Minsaf",
   description: "Minsaf's Portfolio",
 };
+
+const inter = Open_Sans({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -22,21 +19,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="!scroll-smooth bg-black bg-opacity-80 ">
+    <html
+      lang="en"
+      className="!scroll-smooth h-full w-full bg-primary overflow-hidden"
+    >
       <body
-        className={`${inter.className} bg-black bg-opacity-30 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
+        className={`${inter.className} relative h-full w-full  overflow-hidden`}
       >
-
-        <ActiveSectionContextProvider>
+        <AppProvider>
+          <GlowingGradient />
           <Header />
-          {children}
-          <Footer />
-        </ActiveSectionContextProvider>
+          <main className="relative z-10">{children}</main>
+          <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50">
+            <NavigationDock />
+          </div>
+        </AppProvider>
       </body>
     </html>
- 
   );
 }
-
-
-
