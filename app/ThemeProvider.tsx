@@ -28,12 +28,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const loadTheme = (theme: string) => {
     const themeLink = document.getElementById("theme-style") as HTMLLinkElement;
     if (themeLink) {
-      themeLink.href = themes[theme] || themes.light;
+      //
+      themeLink.href = themes[theme as keyof { light: string; dark: string; blue: string; }] || themes.light;
     } else {
       const link = document.createElement("link");
       link.id = "theme-style";
       link.rel = "stylesheet";
-      link.href = themes[theme] || themes.light;
+      link.href = themes[theme as keyof { light: string; dark: string; blue: string; }] || themes.light;
       document.head.appendChild(link);
     }
     localStorage.setItem("theme", theme);
