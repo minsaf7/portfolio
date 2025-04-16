@@ -1,40 +1,43 @@
-import type { Metadata } from "next";
-import { Inter,Open_Sans, Roboto, Montserrat, Lato, Playfair_Display } from "next/font/google";
-import "./globals.css";
-import { NavigationDock } from "@/components/NavigationDock/NavigationDock";
-import { Header } from "@/components/header";
-import GlowingGradient from "./Background";
-import { AppProvider } from "@/context/appContext";
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+// import { ThemeProvider } from "@/app/theme-provider"
+// import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
+import { ThemeProvider } from "./theme-provider"
+import Navbar from "@/components/Navbar"
+// import Navbar from "@/components/navbar"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Mohamed Minsaf",
-  description: "Minsaf's Portfolio",
-};
-
-const inter = Open_Sans({ subsets: ["latin"] });
+  title: "Portfolio | Full Stack Developer",
+  description: "Personal portfolio showcasing my projects and skills",
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      className="!scroll-smooth h-full w-full bg-primary overflow-hidden"
-    >
-      <body
-        className={`${inter.className} relative h-full w-full  overflow-hidden`}
-      >
-        <AppProvider>
-          <GlowingGradient />
-          <Header />
-          <main className="relative z-10">{children}</main>
-          <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50">
-            <NavigationDock />
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          themes={["light", "dark", "system"]}
+        >
+          <div className="relative flex min-h-screen flex-col">
+            <Navbar />
+            <div className="flex-1">{children}</div>
+            <Footer />
           </div>
-        </AppProvider>
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

@@ -1,5 +1,5 @@
 "use client"
-import type { SectionName } from "@/lib/types";
+import type { SectionName } from "@/lib-legacy/types";
 import { createContext, useContext, useState } from "react";
 // import React, { useState, createContext, useContext } from "react";
 
