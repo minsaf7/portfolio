@@ -1,67 +1,114 @@
-import { nextui } from "@nextui-org/theme";
-const defaultTheme = require("tailwindcss/defaultTheme");
-import daisyui from "daisyui"
+import type { Config } from "tailwindcss"
 
-const colors = require("tailwindcss/colors");
-const withMT = require("@material-tailwind/react/utils/withMT");
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
+  darkMode: ["class"],
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/(card|ripple).js",
-
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "*.{js,ts,jsx,tsx,mdx}",
   ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        // Custom colors for Sean Halpin style
+        teal: {
+          DEFAULT: "#005248",
+          light: "#00857a",
+        },
+        mint: {
+          DEFAULT: "#c2e6d9",
+          light: "#e0f2ed",
+        },
+        sand: {
+          DEFAULT: "#e6d9b8",
+          light: "#f2eddf",
+        },
+        lavender: {
+          DEFAULT: "#d9b8e6",
+          light: "#eddef2",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xl: "1.5rem",
+        "2xl": "2rem",
       },
-      colors: {
-        primary: "var(--color-primary)",
-        "primary-x": "var(--color-primary-x)",
-        secondary: "var( --color-secondary)",
-        "secondary-x": "var( --color-secondary-x)",
-        teretiary: "var(--color-teretiary)",
-        "teretiary-x": "var( --color-teretiary-x)",
-
-        "txt-primary": "var(--text-primary)",
-        "txt-secondary": "var(--text-secondary)",
-        button: "var(--color-typography)",
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        float: "float 6s ease-in-out infinite",
+        "float-slow": "float 8s ease-in-out infinite",
+        "pulse-slow": "pulse 4s ease-in-out infinite",
       },
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
-        "open-sans": ["Open Sans", "sans-serif"],
-        lato: ["Lato", "sans-serif"],
+        sans: ["var(--font-cabinet-grotesk)", "sans-serif"],
       },
     },
   },
-  plugins: [addVariablesForColors, nextui(), require("tailwindcss-animate"),daisyui],
-  darkMode: ["class", "class"],
-};
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config
 
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
-
-  addBase({
-    ":root": newVars,
-  });
-}
+export default config
