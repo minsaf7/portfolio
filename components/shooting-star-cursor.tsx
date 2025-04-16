@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useEffect, useState, useRef } from "react"
@@ -65,7 +66,7 @@ export default function ShootingStarCursor() {
       document.removeEventListener("mouseenter", handleMouseEnter)
       cancelAnimationFrame(requestRef.current!)
     }
-  }, [shouldRender])
+  }, [shouldRender,])
 
   // Animation loop for particles
   useEffect(() => {
