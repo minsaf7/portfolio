@@ -130,11 +130,11 @@
 // }
 
 
-"use client"
+
 
 import { useEffect, useState } from "react"
-import { useParams, notFound } from "next/navigation"
-import { motion } from "framer-motion"
+import {  notFound } from "next/navigation"
+// import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
@@ -211,26 +211,38 @@ Key features include real-time stock price tracking, interactive charts and grap
   },
 }
 
-export default function ProjectPage() {
-  const { slug } = useParams()
-  const [project, setProject] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    if (typeof slug !== "string" || !projectsData[slug as keyof typeof projectsData]) {
-      notFound()
-    }
+// 👇 Generate static paths for each project
+export async function generateStaticParams() {
+  return Object.keys(projectsData).map((slug) => ({ slug }))
+}
 
-    setProject(projectsData[slug as keyof typeof projectsData])
-    setLoading(false)
-  }, [slug])
+export default function ProjectPage({ params }: { params: { slug: string } }) {
+  // const { slug } = useParams()
+  // const [project, setProject] = useState<any>(null)
+  // const [loading, setLoading] = useState(true)
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-      </div>
-    )
+  // useEffect(() => {
+  //   if (typeof slug !== "string" || !projectsData[slug as keyof typeof projectsData]) {
+  //     notFound()
+  //   }
+
+  //   setProject(projectsData[slug as keyof typeof projectsData])
+  //   setLoading(false)
+  // }, [slug])
+
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+  //     </div>
+  //   )
+  // }
+
+  const project = projectsData[params.slug as keyof typeof projectsData]
+
+  if (!project) {
+    notFound()
   }
 
   return (
@@ -243,7 +255,7 @@ export default function ProjectPage() {
           </Button>
         </Link>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        {/* <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}> */}
           <div className="relative h-[40vh] md:h-[50vh] rounded-xl overflow-hidden mb-12">
             <Image
               src={project.image || "/placeholder.svg"}
@@ -305,7 +317,7 @@ export default function ProjectPage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        {/* </motion.div> */}
       </div>
     </main>
   )
