@@ -1,10 +1,11 @@
 import Header from "@/components/header"
-import About from "@/components/About"
+// import About from "@/components/About"
 import PhotoGrid from "@/components/PhotoGrid"
 import Experience from "@/components/Experience"
 import Education from "@/components/Education"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
+import About from "@/components/AboutPage"
 
 export default function Home() {
   return (
