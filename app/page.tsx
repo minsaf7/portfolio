@@ -1,4 +1,4 @@
-import Header from "@/components/Header"
+import Header from "@/components/header"
 import About from "@/components/About"
 import PhotoGrid from "@/components/PhotoGrid"
 import Experience from "@/components/Experience"
