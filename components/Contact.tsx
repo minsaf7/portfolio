@@ -15,13 +15,13 @@ export default function Contact() {
       >
         <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
         <p className="text-muted-foreground mb-6">
-          Want to chat? Just shoot me a dm with a direct question on twitter and I'll respond whenever I can. I will
+          Want to chat? Just shoot me a dm with a direct question on twitter and I&apos;ll respond whenever I can. I will
           ignore all soliciting.
         </p>
 
         <Button asChild>
           <a
-            href="https://twitter.com/intent/tweet"
+            href="mailto:minsafmohamed7@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center"
