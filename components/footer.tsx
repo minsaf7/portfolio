@@ -1,15 +1,41 @@
-import React from "react";
-
 export default function Footer() {
   return (
-    <footer className="mb-10 px-4 text-center text-gray-500">
-      <small className="mb-2 block text-xs">
-        &copy; 2030 Minsaaf. All rights reserved.
-      </small>
-      <p className="text-xs">
-        <span className="font-semibold">Contact me @:</span>{" "}
-        minsafmohamed7@gmail.com
-      </p>
+    <footer className="border-t py-8">
+      <div className="container px-4 md:px-6">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-4 md:mb-0">
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} Portfolio. All rights reserved.
+            </p>
+          </div>
+          <div className="flex space-x-6">
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Twitter
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
-  );
+  )
 }

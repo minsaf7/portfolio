@@ -2,171 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* Updated primary colors for light mode */
+    --primary: 222 89% 55%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222 89% 55%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.section-title {
+  @apply text-xl font-medium mb-6;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-wave {
+  animation: wave 2s linear infinite;
+}
+
 html {
-  --line-color: #e5e7eb;
-}
-
-html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
-}
-
-.borderBlack {
-  @apply border border-black/10;
-}
-
-
-
-
-:root{
-  /**/
-  /*other default setting ...*/
-  /**/
-    /* --secondary-glow: conic-gradient(
-      from 10deg at 50% 50%,
-      #eb7494 0deg,
-      #ae77b2 55deg,
-      #97b5da 120deg,
-      #0099ca 160deg,
-      transparent 360deg
-    );
-  
-    --third-glow: conic-gradient(
-      from 90deg at 50% 50%,
-      #ff8b7e 0deg,
-      #e24e6b 160deg,
-      #7ed2da 120deg,
-      #8bdce0 55deg,
-      transparent 360deg
-    ); */
-    --secondary-glow: conic-gradient(
-      from 10deg at 50% 50%,
-      #16423C 0deg,
-      #6A9C89 55deg,
-      #C4DAD2 120deg,
-      #E9EFEC 160deg,
-      transparent 360deg
-    );
-  
-    --third-glow: conic-gradient(
-      from 90deg at 50% 50%,
-      #16325B 0deg,
-      #227B94 160deg,
-      #78B7D0 120deg,
-      #FFDC7F 55deg,
-      transparent 360deg
-    );
-  }
-
-  
-
-
-  .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
-    min-height: 100vh;
-  }
-
-  .mainDiv{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family:'Prospect';
- 
-  }
-
-  .research{
-    margin: 2rem 0;
-    border-radius: 3vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 1.5rem;
-    font-family: 'Helvetica';
-    padding: 0 1rem;
-  }
-
-  .line
-  {
-    background-color: black;
-    display: flex;
-    flex-direction:row;
-    height:50vh;
-    width: 1px;
-
-  }
-
-
-  body::before,
-body::after {
-  content: '';
-  position: fixed;
-  z-index: -1;
-  opacity:0.8;
-
-}
-
-
-body::before {
-  background: var(--third-glow);
-  border-radius: 50%;
-
-  width: 100vw; 
-  height: 100vh; 
-  margin-left: -200px;
-  filter:blur(90px);  
-  top: calc(50vh - 50vw/2);
-  left: calc(50vw );
-}
-
-body::after {
-  background: var(--secondary-glow);
-  border-radius: 50%;
-  width: 500px;
-  height: 700px;
-  filter:blur(90px);
-  top: calc(50vh - 50vw/2);
-  left: calc(50vw - 50vw/2);
-}
-
-
-
-@keyframes animateBefore {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(200px) scale(0.8);
-
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes animateAfter{
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-250px) scale(1.2);
-
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-
-body::before {
-
-  animation: animateBefore 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
-}
-
-body::after {
- 
-  animation: animateAfter 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
+  scroll-behavior: smooth;
 }
