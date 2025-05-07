@@ -2,31 +2,29 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-// import { ThemeToggle } from "./theme-toggle"
+import { usePathname } from "next/navigation"
+import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from "framer-motion"
-import { ThemeToggle } from "./theme-toggle"
-// import ThemeToggle from "./theme-toggle"
+import { ModeToggle } from "./ModeToggle"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Education", href: "#education" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", path: "/" },
+  { name: "About", path: "/#about" },
+  { name: "Experience", path: "/#experience" },
+  { name: "Skills", path: "/#skills" },
+  { name: "Projects", path: "/#projects" },
 ]
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10)
     }
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -34,78 +32,68 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled ? "bg-background/80 backdrop-blur-md shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <Link href="/" className="text-xl font-bold">
             Portfolio
-          </motion.div>
-        </Link>
+          </Link>
 
-        <div className="hidden md:flex items-center space-x-6">
-          {navItems.map((item, index) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <button
-                onClick={() => {
-                  const element = document.getElementById(item.href.substring(1))
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" })
-                    setIsOpen(false)
-                  }
-                }}
-                className="text-foreground/80 hover:text-foreground transition-colors"
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8 items-center">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.path}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  pathname === item.path ? "text-primary" : "text-muted-foreground"
+                }`}
               >
                 {item.name}
-              </button>
-            </motion.div>
-          ))}
-          <ThemeToggle />
-        </div>
+              </Link>
+            ))}
+            <ModeToggle />
+          </nav>
 
-        <div className="flex md:hidden items-center gap-4">
-          <ThemeToggle />
-          <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          {/* Mobile Navigation Toggle */}
+          <div className="flex md:hidden items-center space-x-4">
+            <ModeToggle />
+            <button onClick={() => setIsOpen(!isOpen)} className="text-foreground" aria-label="Toggle Menu">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/95 backdrop-blur-md"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    const element = document.getElementById(item.href.substring(1))
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" })
-                      setIsOpen(false)
-                    }
-                  }}
-                  className="text-foreground/80 hover:text-foreground py-2 transition-colors text-left w-full"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Navigation Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden bg-background border-b"
+        >
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.path}
+                onClick={() => setIsOpen(false)}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  pathname === item.path
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </header>
   )
 }

@@ -1,29 +1,36 @@
-// 
-
-
-// import Hero from "@/components/hero"
+import Header from "@/components/header"
+// import About from "@/components/About"
+import PhotoGrid from "@/components/PhotoGrid"
+import Experience from "@/components/Experience"
+import Education from "@/components/Education"
+import Projects from "@/components/Projects"
+import Contact from "@/components/Contact"
 import About from "@/components/AboutPage"
-// import Experience from "@/components/experience"
-// import Education from "@/components/education"
-// import Skills from "@/components/skills"
-// import Projects from "@/components/projects"
-// import Contact from "@/components/contact"
-import Education from "@/components/EducationPage"
-import Experience from "@/components/ExperiencePage"
-import Hero from "@/components/HeroSection"
-import Projects from "@/components/projects-section"
-import Skills from "@/components/skills-section"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center">
-      <Hero />
-      <About />
-      <Experience />
-      <Education />
-      <Skills />
-      <Projects />
-      {/* <Contact /> */}
+    <main className="relative min-h-screen">
+      <div className="container max-w-3xl mx-auto px-4 py-16 relative z-10">
+        <section id="home">
+          <Header />
+        </section>
+        <section id="about">
+          <About />
+        </section>
+        <PhotoGrid />
+        <section id="experience">
+          <Experience />
+        </section>
+        <section id="education">
+          <Education />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
+      </div>
     </main>
   )
 }
