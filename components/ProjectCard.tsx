@@ -34,7 +34,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
           <CardContent className="flex-grow pt-6">
             <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-            <p className="text-muted-foreground mb-4">{project.shortDescription}</p>
+            <p className="text-muted-foreground mb-4">{project.description}</p>
             <div className="flex flex-wrap gap-2 mb-4">
               {project.technologies.slice(0, 5).map((tech, index) => (
                 <Badge key={index} variant="outline">
