@@ -1,8 +1,6 @@
-"use client";
 
-import { useEffect, useState } from "react";
-import { useParams, notFound } from "next/navigation";
-import { motion } from "framer-motion";
+import { notFound } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
@@ -10,35 +8,36 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { projects, type Project } from "@/lib/data";
+import { AnimatedContainer } from "@/components/AnimatedContainer";
 
-export default function ProjectPage() {
-  const { slug } = useParams();
-  const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState(true);
+export async function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.id }));
+}
 
-  useEffect(() => {
-    if (typeof slug !== "string") {
-      notFound();
-      return;
-    }
+export default function ProjectPage({ params }: { params: { slug: string } }) {
+  const project = projects.find((p) => p.id === params.slug);
 
-    const foundProject = projects.find((p) => p.id === slug);
-    if (!foundProject) {
-      notFound();
-      return;
-    }
+  // const { slug } = useParams();
+  // const [project, setProject] = useState<Project | null>(null);
 
-    setProject(foundProject);
-    setLoading(false);
-  }, [slug]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse">Loading...</div>
-      </div>
-    );
-  }
+  // useEffect(() => {
+  //   if (typeof slug !== "string") {
+  //     notFound();
+  //     return;
+  //   }
+
+  //   const foundProject = projects.find((p) => p.id === slug);
+  //   if (!foundProject) {
+  //     notFound();
+  //     return;
+  //   }
+
+  //   setProject(foundProject);
+  //   setLoading(false);
+  // }, [slug]);
+
+  
 
   if (!project) {
     return notFound();
@@ -57,11 +56,12 @@ export default function ProjectPage() {
           </Link>
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-        >
+        > */}
+        <AnimatedContainer>
           <div className="mb-12">
             <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
             <p className="text-muted-foreground mb-6">{project.period}</p>
@@ -75,19 +75,24 @@ export default function ProjectPage() {
                   className="object-cover"
                 />
               ) : (
-                <video 
-                // width="640" height="360"
-                 autoPlay muted loop playsInline>
+                <video
+                  // width="640" height="360"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                >
                   <source src={project.image} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}
-              <Image
+              {/* <Image
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
                 fill
                 className="object-cover"
-              />
+              /> */}
             </div>
 
             <div className="mb-8">
@@ -153,7 +158,7 @@ export default function ProjectPage() {
             )}
 
             <div className="flex flex-wrap gap-4 mt-8">
-              {project.github && (
+              {/* {project.github && (
                 <Button asChild>
                   <a
                     href={project.github}
@@ -165,7 +170,7 @@ export default function ProjectPage() {
                     <span>View on GitHub</span>
                   </a>
                 </Button>
-              )}
+              )} */}
               {/* {project.link && (
                 <Button variant="outline" asChild>
                   <a
@@ -181,7 +186,8 @@ export default function ProjectPage() {
               )} */}
             </div>
           </div>
-        </motion.div>
+          {/* </motion.div> */}
+        </AnimatedContainer>
       </div>
     </div>
   );

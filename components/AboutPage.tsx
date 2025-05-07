@@ -26,21 +26,27 @@ export default function About() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="space-y-6"
       >
-        <p className="text-lg">
-          I am a passionate Full Stack Developer with expertise in building
-          complex web and mobile applications. My focus is on creating scalable,
-          efficient, and user-friendly solutions that solve real-world problems.
+        <p className="text-muted-foreground ">
+        I&apos;m a <span className="font-bold text-blue-600">Full Stack Developer</span> with expertise in building complex web
+            applications and mobile solutions. My focus is on creating scalable, maintainable software architectures
+            that deliver exceptional user experiences.
         </p>
-        <p className="text-lg">
-          With a strong background in both frontend and backend development, I
-          specialize in modern JavaScript frameworks like React and React
-          Native, as well as server-side technologies including Node.js and
-          microservice architectures.
+        <p className="text-muted-foreground ">
+          With a strong background in{" "}
+          <span className="font-bold text-blue-600">microservices architecture</span>, I
+          specialize in developing enterprise-grade applications for the
+          financial sector. I&apos;m passionate about implementing server-driven
+          UI approaches that enable dynamic content delivery and reduce
+          deployment overhead.
         </p>
-        <p className="text-lg">
-          My experience includes developing enterprise-level content management
-          systems, financial applications, and implementing server-driven UI
-          architectures that provide dynamic and responsive user experiences.
+        <p className="text-muted-foreground mb-16 pb-16">
+          My experience spans both web and mobile development, with a particular
+          focus on{" "}
+          <span className="font-bold text-blue-600">
+            React, React Native, Node.js, and TypeScript
+          </span>
+          . I enjoy working with modern technologies and architectural patterns
+          to solve complex business problems.
         </p>
       </motion.div>
       <div ref={ref} className="grid md:grid-cols-2 gap-12 items-center">
