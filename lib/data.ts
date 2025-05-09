@@ -112,7 +112,7 @@ export const projects: Project[] = [
     ],
     architecture: [
       "Client-server architecture with React Native frontend",
-      "Node.js backend with GraphQL API",
+      // "Node.js backend with GraphQL API",
       "Server-driven UI for dynamic content updates",
       "Real-time data streaming",
     ],
