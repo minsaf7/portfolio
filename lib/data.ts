@@ -24,7 +24,7 @@ export const projects: Project[] = [
     description: "A no-code/low-code Web Content Management System for financial institutions",
     fullDescription:
       "DFN CMS is a no-code/low-code Web Content Management System (WCMS) designed specifically for financial institutions. It enables businesses to build, manage, and deploy websites with ease, leveraging a modular approach with pre-built financial widgets.\n\nThe platform follows a server-driven UI architecture, dynamically rendering published websites based on backend configurations, reducing frontend redeployment needs. It is developed using React.js, TypeScript, Node.js, MolecularJS, MongoDB, Redis, and Docker. The system uses a microservice architecture for scalability and maintainability.",
-    period: "2021 - 2023",
+    period: "DirectFN",
     image: "/cms.png",
     mediaType:'image',
     technologies: [
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     description: "A React Native application for real-time stock market data and analytics",
     fullDescription:
       "DFN Fincon is a React Native application that provides real-time stock market data and analytics using a server-driven UI architecture. The app delivers comprehensive financial information, market trends, and personalized insights to users on mobile devices.\n\nDeveloped using React Native, TypeScript, and React Hookstate for state management, the application offers a seamless user experience with real-time updates and interactive visualizations. The server-driven UI approach allows for dynamic content delivery and feature updates without requiring app store resubmissions.",
-    period: "2020 - 2021",
+    period: "DirectFN",
     image: "/DFNONE.mp4",
     mediaType:'video',
     technologies: ["React Native", "TypeScript", "React Hookstate", "Node.js", "GraphQL", "Server-Driven UI"],
