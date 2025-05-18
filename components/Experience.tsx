@@ -12,7 +12,7 @@ import {
 
 const experiences = [
   {
-    company: "DirectFN Sri Lanka • Hydbrid",
+    company: "DirectFN Sri Lanka • Hybrid",
     role: "Senior Software Engineer",
     period: "Sep 2024 - Present",
     logo: "/directfn.png",
@@ -28,7 +28,7 @@ const experiences = [
      type:"• Hydbrid"
   },
   {
-    company: "DirectFN Sri Lanka • Hydbrid",
+    company: "DirectFN Sri Lanka • Hybrid",
     role: "Software Engineer ",
     period: "Dec 2022 - Oct 2024",
     logo: "/directfn.png",
