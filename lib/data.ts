@@ -134,9 +134,9 @@ export const projects: Project[] = [
     description:
       "A cloud-based POS system integrated with online delivery partners and ERP",
     fullDescription:
-      "The Cloud Point of Sale (POS) system is a modern web application developed using React.js and .NET API, designed to unify in-store and online ordering experiences. It integrates with major delivery platforms like Uber Eats and Deliveroo to synchronize orders with the ERP system and all POS terminals in real time.\n\nThis solution enhances operational efficiency by enabling centralized order management, inventory synchronization, and sales tracking across multiple channels. It is scalable, responsive, and built for high availability in retail and F&B environments.",
+      "The Blue Lotus Point of Sale (POS) system is a modern web application developed using React.js and .NET API, designed to unify in-store and online ordering experiences in the UK. It integrates with major delivery platforms like Uber Eats and Deliveroo to synchronize orders with the ERP system and all POS terminals in real time.\n\nThis solution enhances operational efficiency by enabling centralized order management, inventory synchronization, and sales tracking across multiple channels. It is scalable, responsive, and built for high availability in retail and F&B environments.",
     period: "Blue Lotus 360",
-    image: "/placeholder.png",
+    image: "/placeholder-image.jpg",
     mediaType: "image",
     technologies: [
       "React",
