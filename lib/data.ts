@@ -136,7 +136,7 @@ export const projects: Project[] = [
     fullDescription:
       "Cloud Point of Sale is a powerful, cloud-based POS system developed using React.js and .NET API. It acts not only as a synchronization layer between in-store POS terminals and online delivery partners like Uber Eats, Deliveroo, and others, but also functions as a fully operational POS terminal itself.\n\nThe system enables real-time order and inventory syncing with ERP systems and provides businesses with a centralized interface to manage sales, menu items, deliveries, and store operations across multiple channels. The goal is to streamline operations and reduce friction between online and offline sales touchpoints.",
     period: "DirectFN",
-    image: "/placeholder-image.png",
+    image: "/placeholder-image.jpg",
     mediaType: "image",
     technologies: [
       "React",
