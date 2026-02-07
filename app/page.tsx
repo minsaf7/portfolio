@@ -1,5 +1,5 @@
 
-import { ExperienceSection } from "@/components/Experience"
+import { ExperienceSection } from "@/components/ui/Experience"
 import { AboutSection } from "@/components/ui/AboutSection"
 import { ContactSection } from "@/components/ui/ContactSection"
 import { DockNavigation } from "@/components/ui/DockNavigation"
