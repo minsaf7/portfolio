@@ -245,7 +245,7 @@ export default async function ProjectPage({
         {/* Main Media */}
         {project.image && (
           <div className="mt-6 overflow-hidden rounded-lg border border-border/50">
-            {isVideo(project.image) ? (
+            {project.mediaType === 'video' ? (
               <video
                 src={project.image}
                 autoPlay

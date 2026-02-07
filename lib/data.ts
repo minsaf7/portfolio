@@ -90,8 +90,7 @@ export const projects: Project[] = [
         description: "Manages website settings and metadata",
       },
     ],
-    link: "https://example.com/dfn-cms",
-    github: "https://github.com/example/dfn-cms",
+    gallery:['/cms.png','/cms-1.png','/cms-2.png','/cms-3.png','/cms-4.png','/cms-5.png',]
   },
   {
     id: "dfn-fincon",

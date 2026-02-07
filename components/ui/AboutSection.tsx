@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TerminalHeader } from "./TerminalHeader";
 
 export function AboutSection() {
@@ -50,12 +51,8 @@ export function AboutSection() {
           delivering{" "}
           <span className="text-blue-600 dark:text-[hsl(var(--code-string))]">
             high-performance
-          </span>
-          ,{" "}
-          <span className="text-blue-600 dark:text-[hsl(var(--code-string))]">
-            compliance-ready
           </span>{" "}
-          systems. Certified Frontend Developer (Meta – Coursera).
+          systems. <Link href={'https://coursera.org/share/8b26f78d33433ca9ffae5808aec24b3d'} className="code-error font-mono" data-hint="Go to Cousera">Certified Frontend Developer (Meta – Coursera)</Link><span className="terminal-cursor ml-1">▌</span>
         </p>
       </div>
     </section>

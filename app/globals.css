@@ -137,3 +137,62 @@ html {
 .dock-item:has(+ .dock-item:hover) {
   transform: translateY(-3px) scale(1.08);
 }
+
+
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal-cursor {
+  animation: blink 1s step-start infinite;
+}
+
+
+.code-error {
+  color: inherit; /* keep normal text color */
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #ef4444; /* Tailwind red-500 */
+  text-underline-offset: 3px;
+}
+
+.code-error:hover {
+  color: #ef4444;
+}
+
+
+.code-error {
+  position: relative;
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #ef4444;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.code-error::after {
+  content: attr(data-hint);
+  position: absolute;
+  left: 0;
+  /* bottom: -2.2rem; */
+  top: -2.2rem;       
+  background: #111;
+  color: #f9fafb;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: all 0.15s ease;
+  z-index: 50;
+}
+
+.code-error:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
