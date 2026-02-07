@@ -173,23 +173,28 @@
 //   )
 // }
 
+import { use } from "react";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { projects } from "@/lib/data";
 
+// This tells Next.js which pages to pre-render
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id.toString(),
+  }));
+}
 
-"use client"
-
-import { use } from "react"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ExternalLink, Github } from "lucide-react"
-import { projects } from "@/lib/data"
-
-export default function ProjectPage({
+export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: { id: string };
 }) {
-  const { id } = use(params)
-  const project = projects.find((p) => p.id === id)
+  const { id } = await params;
+  const project = projects.find(
+    (p) => p.id.toString() === id, // make sure to convert number to string
+  );
 
   if (!project) {
     return (
@@ -207,11 +212,11 @@ export default function ProjectPage({
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   // Helper: detect if URL is a video
-  const isVideo = (src: string) => src.endsWith(".mp4")
+  const isVideo = (src: string) => src.endsWith(".mp4");
 
   return (
     <div className="min-h-screen">
@@ -277,7 +282,11 @@ export default function ProjectPage({
                     className="w-full object-cover"
                   />
                 ) : (
-                  <img src={src} alt={`Gallery ${i + 1}`} className="w-full object-cover" />
+                  <img
+                    src={src}
+                    alt={`Gallery ${i + 1}`}
+                    className="w-full object-cover"
+                  />
                 )}
               </div>
             ))}
@@ -297,7 +306,6 @@ export default function ProjectPage({
           ))}
         </div>
 
-     
         {/* <div className="mt-6 flex gap-4">
           {project.link && (
             <a
@@ -396,6 +404,5 @@ export default function ProjectPage({
         <div className="h-16" />
       </main>
     </div>
-  )
+  );
 }
-
