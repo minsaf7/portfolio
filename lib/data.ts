@@ -15,6 +15,7 @@ export interface Project {
   }[];
   link?: string;
   github?: string;
+  gallery?:string[]
 }
 
 export const projects: Project[] = [
@@ -100,7 +101,8 @@ export const projects: Project[] = [
     fullDescription:
       "DFN Fincon is a React Native application that provides real-time stock market data and analytics using a server-driven UI architecture. The app delivers comprehensive financial information, market trends, and personalized insights to users on mobile devices.\n\nDeveloped using React Native, TypeScript, and React Hookstate for state management, the application offers a seamless user experience with real-time updates and interactive visualizations. The server-driven UI approach allows for dynamic content delivery and feature updates without requiring app store resubmissions.",
     period: "DirectFN",
-    image: "/DFNONE.mp4",
+    image:
+      "https://ik.imagekit.io/og71qrt62/assets/DFNONE.mp4?updatedAt=1762323292517",
     mediaType: "video",
     technologies: [
       "React Native",
@@ -164,5 +166,71 @@ export const projects: Project[] = [
 
     link: "https://example.com/cloud-pos",
     github: "https://github.com/example/cloud-pos",
+  },
+  {
+    id: "market-disclosure-platform",
+    title: "Market Disclosure Platform",
+    description:
+      "A disclosure management platform for brokerages with a dynamic form builder and full Arabic localization support",
+    fullDescription:
+      "Market Disclosure Platform is a web-based solution built for brokerages to manage and publish regulatory market disclosures efficiently. The platform includes a powerful dynamic form builder that allows administrators to create, configure, and deploy disclosure forms without code.\n\nIt supports full localization with Arabic language and RTL layout compatibility, ensuring usability across multilingual regions. The system streamlines the end-to-end disclosure workflow, including form creation, validations, submission tracking, approvals, and export-ready reporting.\n\nI led the frontend team, driving architecture decisions, UI consistency, performance improvements, and collaboration across backend and product teams. The frontend was built using React.js, React Hook Form, Material UI, and Webpack.",
+    period: "DirectFN",
+    image: "/market-disclosure.png",
+    mediaType: "image",
+    technologies: [
+      "React",
+      "JavaScript",
+      "React Hook Form",
+      "Material UI",
+      "Webpack",
+      "REST APIs",
+      "i18n",
+      "RTL Support",
+    ],
+    features: [
+      "Dynamic form builder with reusable components",
+      "Fully localized UI with Arabic (RTL) support",
+      "Advanced validations and conditional form logic",
+      "Multi-step disclosure workflows",
+      "Role-based access control (Admin, Reviewer, Publisher)",
+      "Disclosure submission tracking and audit history",
+      "Exportable disclosure reports (PDF/Excel-ready data)",
+      "Config-driven form rendering without frontend redeployment",
+    ],
+    architecture: [
+      "Component-driven UI architecture using React and Material UI",
+      "Schema-based dynamic form engine powered by React Hook Form",
+      "Webpack-based build system with optimized bundling",
+      "Localization system supporting RTL layout and Arabic translations",
+    ],
+    services: [
+      {
+        name: "Form Builder Module",
+        description:
+          "Allows admins to create and configure disclosure forms dynamically using a schema-based UI",
+      },
+      {
+        name: "Disclosure Submission Module",
+        description:
+          "Handles form submissions, validation rules, and disclosure lifecycle tracking",
+      },
+      {
+        name: "Approval & Publishing Module",
+        description:
+          "Supports review workflows, approvals, and publishing disclosures to external channels",
+      },
+      {
+        name: "Localization & RTL Module",
+        description:
+          "Manages multilingual translations, Arabic support, and RTL layout switching",
+      },
+      {
+        name: "Audit & Reporting Module",
+        description:
+          "Provides audit logs, submission history, and export-ready reporting data",
+      },
+    ],
+    link: "https://example.com/market-disclosure-platform",
+    github: "https://github.com/example/market-disclosure-platform",
   },
 ];

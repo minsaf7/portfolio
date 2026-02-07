@@ -1,36 +1,24 @@
-import Header from "@/components/header"
-// import About from "@/components/About"
-import PhotoGrid from "@/components/PhotoGrid"
-import Experience from "@/components/Experience"
-import Education from "@/components/education"
-import Projects from "@/components/Projects"
-import Contact from "@/components/Contact"
-import About from "@/components/AboutPage"
 
-export default function Home() {
+import { ExperienceSection } from "@/components/Experience"
+import { AboutSection } from "@/components/ui/AboutSection"
+import { ContactSection } from "@/components/ui/ContactSection"
+import { DockNavigation } from "@/components/ui/DockNavigation"
+import { EducationSection } from "@/components/ui/EducationSection"
+import { HeroSection } from "@/components/ui/HeroSection"
+import { ProjectsSection } from "@/components/ui/ProjectSection"
+
+export default function Page() {
   return (
-    <main className="relative min-h-screen">
-      <div className="container max-w-3xl mx-auto px-4 py-16 relative z-10">
-        <section id="home">
-          <Header />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-        <PhotoGrid />
-        <section id="experience">
-          <Experience />
-        </section>
-        <section id="education">
-          <Education />
-        </section>
-        <section id="projects">
-          <Projects />
-        </section>
-        <section id="contact">
-          <Contact />
-        </section>
-      </div>
-    </main>
+    <div className="gradient-bg relative min-h-screen">
+      <main className="relative z-10 mx-auto max-w-2xl px-6 pb-24">
+        <HeroSection />
+        <AboutSection />
+        <ExperienceSection />
+        <EducationSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
+      <DockNavigation />
+    </div>
   )
 }
