@@ -19,6 +19,11 @@ const education = [
     degree: "Diploma in Computer Based Information System",
     period: "2016 – 2017",
   },
+  {
+    school: "Royal College Colombo, Sri Lanka",
+    degree: "Advance Level",
+    period: "2014 – 2016",
+  },
 ]
 
 export function EducationSection() {
