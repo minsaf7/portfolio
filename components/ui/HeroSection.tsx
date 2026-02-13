@@ -8,7 +8,7 @@ export function HeroSection() {
           <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             {"hi, i'm Mohamed Minsaf"}
           </h1>
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base font-mono">
             Senior Software Engineer. I love building scalable frontend and
             full-stack applications. Specialized in React, TypeScript, and
             Node.js.
