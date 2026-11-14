@@ -1,11 +1,7 @@
-"use client"
+"use client";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { useState } from "react";
+import { Section } from "@/components/site/Section";
 
 const experiences = [
   {
@@ -46,79 +42,51 @@ const experiences = [
       "Collaborated across teams to ship stable, production-ready features",
     ],
   },
-]
+];
 
 export function ExperienceSection() {
+  const [open, setOpen] = useState<number | null>(null);
+
   return (
-    <section id="experience" className="py-14 md:py-20">
-      {/* Section header (code comment style) */}
-      <div className="mb-8 text-lg font-mono text-black/60 dark:text-[hsl(var(--code-string))] font-bold">
-        {"// career.timeline"}
-      </div>
-
-      {/* <h2 className="mb-10 text-lg font-semibold tracking-tight text-black dark:text-white">
-        Experience
-      </h2> */}
-
-      <Accordion type="single" collapsible className="relative space-y-1">
-        {/* Timeline spine */}
-        <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-border/60" />
-
-        {experiences.map((exp, i) => (
-          <AccordionItem
-            key={i}
-            value={`exp-${i}`}
-            className="relative border-none"
-          >
-            <AccordionTrigger className="group flex items-start gap-6 py-6 hover:no-underline">
-              {/* Timeline dot */}
-              <div className="relative z-10 mt-1 flex h-3 w-3 items-center justify-center rounded-full bg-background">
-                <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-[hsl(var(--code-string))]" />
-              </div>
-
-              {/* Header */}
-              <div className="flex flex-1 items-start justify-between gap-6">
-                <div>
-                  <h3 className="text-sm font-medium text-black dark:text-white">
-                    {exp.company}
-                    <span className="ml-2 text-xs text-blue-600 dark:text-[hsl(var(--code-string))]">
-                      • {exp.mode}
-                    </span>
-                  </h3>
-
-                  <p className="mt-1 font-mono text-xs text-black/70 dark:text-white/70  items-start flex">
-                    {exp.role}
-                  </p>
-                </div>
-
-                <span className="hidden font-mono text-xs text-black/60 dark:text-white/60 sm:block">
+    <Section id="experience" command="git log --career">
+      <ul className="space-y-1">
+        {experiences.map((exp, i) => {
+          const isOpen = open === i;
+          return (
+            <li key={exp.role}>
+              <button
+                type="button"
+                onClick={() => setOpen(isOpen ? null : i)}
+                aria-expanded={isOpen}
+                className="group -mx-3 flex w-[calc(100%+1.5rem)] items-baseline justify-between gap-4 rounded-lg px-3 py-3 text-left transition-colors hover:bg-accent/60"
+              >
+                <span>
+                  <span className="font-medium">{exp.role}</span>
+                  <span className="block text-sm text-muted-foreground">
+                    {exp.company} · {exp.mode}
+                  </span>
+                </span>
+                <span className="shrink-0 font-mono text-xs text-muted-foreground">
                   {exp.period}
                 </span>
-              </div>
-            </AccordionTrigger>
+              </button>
 
-            <AccordionContent>
-              <div className="ml-9 rounded-lg border border-border/50 bg-muted/30 dark:bg-muted/20 p-5 backdrop-blur-sm">
-                <p className="mb-3 font-mono text-xs text-black/60 dark:text-white/60 sm:hidden">
-                  {exp.period}
-                </p>
-
-                <div className="space-y-3">
-                  {exp.description.map((item, j) => (
-                    <div
-                      key={j}
-                      className="flex gap-3 text-sm leading-relaxed text-black/80 dark:text-white/80"
-                    >
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-blue-600/70 dark:bg-[hsl(var(--code-string))]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
+              <div className="collapse" data-open={isOpen} aria-hidden={!isOpen}>
+                <div>
+                  <ul className="space-y-2 pb-4 pt-1 text-sm leading-relaxed text-muted-foreground">
+                    {exp.description.map((item, j) => (
+                      <li key={j} className="flex gap-3">
+                        <span className="select-none text-highlight">–</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </section>
-  )
+            </li>
+          );
+        })}
+      </ul>
+    </Section>
+  );
 }

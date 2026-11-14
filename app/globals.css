@@ -2,68 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
+/*
+  Palette
+  maroon #780000 · red #c1121f · cream #fdf0d5 · navy #0d1321 · blue #669bbc
+*/
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 9%;
-    --radius: 0.5rem;
-    --code-bg: 220 14% 96%;
-    --code-header: 220 13% 91%;
-    --code-keyword: 280 68% 45%;
-    --code-string: 142 71% 30%;
-    --code-comment: 0 0% 55%;
-    --code-type: 217 91% 45%;
+    --background: 40 91% 91%; /* cream */
+    --foreground: 222 43% 9%; /* navy */
+    --card: 40 95% 94%;
+    --card-foreground: 222 43% 9%;
+    --popover: 40 95% 94%;
+    --popover-foreground: 222 43% 9%;
+    --primary: 222 43% 9%;
+    --primary-foreground: 40 91% 91%;
+    --secondary: 38 55% 86%;
+    --secondary-foreground: 222 43% 9%;
+    --muted: 38 55% 86%;
+    --muted-foreground: 222 18% 36%;
+    --accent: 38 55% 86%;
+    --accent-foreground: 222 43% 9%;
+    --destructive: 355 83% 41%;
+    --destructive-foreground: 40 91% 91%;
+    --border: 36 38% 78%;
+    --input: 36 38% 78%;
+    --ring: 355 83% 41%;
+    --radius: 0.75rem;
+
+    /* the single accent: red on cream, blue on navy */
+    --highlight: 355 83% 41%;
+    --highlight-hover: 0 100% 24%;
   }
+
   .dark {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 0 0% 12%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 0 0% 83%;
-    --radius: 0.5rem;
-    --code-bg: 220 13% 10%;
-    --code-header: 220 13% 14%;
-    --code-keyword: 280 68% 65%;
-    --code-string: 142 71% 55%;
-    --code-comment: 0 0% 45%;
-    --code-type: 217 91% 65%;
+    --background: 222 43% 9%; /* navy */
+    --foreground: 40 91% 91%; /* cream */
+    --card: 222 38% 12%;
+    --card-foreground: 40 91% 91%;
+    --popover: 222 38% 12%;
+    --popover-foreground: 40 91% 91%;
+    --primary: 40 91% 91%;
+    --primary-foreground: 222 43% 9%;
+    --secondary: 222 30% 16%;
+    --secondary-foreground: 40 91% 91%;
+    --muted: 222 30% 16%;
+    --muted-foreground: 40 18% 68%;
+    --accent: 222 30% 16%;
+    --accent-foreground: 40 91% 91%;
+    --destructive: 355 83% 41%;
+    --destructive-foreground: 40 91% 91%;
+    --border: 222 26% 19%;
+    --input: 222 26% 19%;
+    --ring: 203 39% 57%;
+
+    --highlight: 203 39% 57%;
+    --highlight-hover: 203 50% 70%;
   }
 }
 
@@ -71,128 +65,106 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  ::selection {
+    background: #c1121f;
+    color: #fdf0d5;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* underline that draws in on hover */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s ease;
+  }
+  .link-underline:hover,
+  .group:hover .link-underline {
+    background-size: 100% 1px;
+  }
 }
 
-/* Subtle gradient background orbs */
-.gradient-bg::before,
-.gradient-bg::after {
-  content: "";
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(140px);
-  pointer-events: none;
-  z-index: 0;
+/* terminal caret */
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: hsl(var(--highlight));
+  animation: caret-blink 1.05s step-end infinite;
 }
 
-.gradient-bg::before {
-  width: 500px;
-  height: 500px;
-  background: hsl(217 91% 60% / 0.08);
-  top: -150px;
-  left: -100px;
-  animation: drift 25s ease-in-out infinite;
+/*
+  Entrance animations are pure CSS so text always ends fully visible,
+  even if JavaScript is slow or fails.
+*/
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: fade-up 0.5s ease-out both;
+  animation-delay: var(--delay, 0ms);
 }
 
-.gradient-bg::after {
-  width: 400px;
-  height: 400px;
-  background: hsl(280 65% 60% / 0.06);
-  bottom: -100px;
-  right: -80px;
-  animation: drift 25s ease-in-out infinite reverse;
+/* Scroll reveal where the browser supports scroll-driven animations;
+   elsewhere content is simply shown. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
 }
 
-.dark .gradient-bg::before {
-  background: hsl(217 91% 60% / 0.06);
-}
-
-.dark .gradient-bg::after {
-  background: hsl(280 65% 60% / 0.04);
-}
-
-@keyframes drift {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(40px, -30px); }
-  66% { transform: translate(-20px, 20px); }
-}
-
-/* Dock magnification */
-.dock-item {
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dock-item:hover {
-  transform: translateY(-6px) scale(1.2);
-}
-
-/* Neighbor magnification via CSS */
-.dock-item:hover + .dock-item,
-.dock-item:has(+ .dock-item:hover) {
-  transform: translateY(-3px) scale(1.08);
-}
-
-
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.terminal-cursor {
-  animation: blink 1s step-start infinite;
-}
-
-
-.code-error {
-  color: inherit; /* keep normal text color */
-  text-decoration-line: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: #ef4444; /* Tailwind red-500 */
-  text-underline-offset: 3px;
-}
-
-.code-error:hover {
-  color: #ef4444;
-}
-
-
-.code-error {
-  position: relative;
-  color: inherit;
-  text-decoration-line: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: #ef4444;
-  text-underline-offset: 3px;
-  cursor: pointer;
-}
-
-.code-error::after {
-  content: attr(data-hint);
-  position: absolute;
-  left: 0;
-  /* bottom: -2.2rem; */
-  top: -2.2rem;       
-  background: #111;
-  color: #f9fafb;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
+/* Smooth open/close for collapsible rows */
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  pointer-events: none;
-  transform: translateY(-4px);
-  transition: all 0.15s ease;
-  z-index: 50;
+  transition: grid-template-rows 0.3s ease-out, opacity 0.3s ease-out;
+}
+.collapse[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.collapse > * {
+  overflow: hidden;
 }
 
-.code-error:hover::after {
-  opacity: 1;
-  transform: translateY(0);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

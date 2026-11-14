@@ -1,7 +1,4 @@
-
-
-
-import { GraduationCap } from "lucide-react"
+import { Section } from "@/components/site/Section";
 
 const education = [
   {
@@ -24,50 +21,24 @@ const education = [
     degree: "Advance Level",
     period: "2014 – 2016",
   },
-]
+];
 
 export function EducationSection() {
   return (
-    <section id="education" className="py-14 md:py-20">
-      {/* Section comment */}
-      <div className="mb-8 text-lg font-mono text-black/60 dark:text-[hsl(var(--code-string))] font-bold">
-        {"// education.background"}
-      </div>
-
-      {/* <h2 className="mb-10 text-lg font-semibold tracking-tight text-black dark:text-white">
-        Education
-      </h2> */}
-
-      <div className="relative space-y-1">
-        {/* Timeline spine */}
-        <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-border/60" />
-
-        {education.map((edu, i) => (
-          <div key={i} className="relative flex gap-6 py-6">
-            {/* Timeline dot */}
-            <div className="relative z-10 mt-1 flex h-3 w-3 items-center justify-center rounded-full bg-background">
-              <div className="h-2 w-2 rounded-full bg-blue-600 dark:bg-[hsl(var(--code-string))]" />
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-1 items-start justify-between gap-6">
-              <div>
-                <h3 className="text-sm font-medium text-black dark:text-white">
-                  {edu.school}
-                </h3>
-
-                <p className="mt-1 font-mono text-xs text-black/70 dark:text-white/70">
-                  {edu.degree}
-                </p>
-              </div>
-
-              <span className="shrink-0 font-mono text-xs text-black/60 dark:text-white/60">
-                {edu.period}
-              </span>
-            </div>
-          </div>
+    <Section id="education" command="cat education.txt">
+      <ul className="space-y-4">
+        {education.map((edu) => (
+          <li key={edu.degree} className="flex items-baseline justify-between gap-4">
+            <span>
+              <span className="font-medium">{edu.degree}</span>
+              <span className="block text-sm text-muted-foreground">{edu.school}</span>
+            </span>
+            <span className="shrink-0 font-mono text-xs text-muted-foreground">
+              {edu.period}
+            </span>
+          </li>
         ))}
-      </div>
-    </section>
-  )
+      </ul>
+    </Section>
+  );
 }

@@ -1,55 +1,47 @@
-import { Github, Linkedin, Mail, Twitter,Instagram } from "lucide-react"
+import { Section } from "@/components/site/Section";
+
+const EMAIL = "minsafmohamed7@gmail.com";
 
 const socials = [
-  { icon: Github, label: "GitHub", href: "https://github.com/minsaf7" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mohamed-minsaaf/" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/minsaaaf" },
-
-  { icon: Mail, label: "Email", href: "mailto:minsafmohamed7@gmail.com" },
-]
+  { label: "GitHub", href: "https://github.com/minsaf7" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/mohamed-minsaaf/" },
+  { label: "Instagram", href: "https://www.instagram.com/minsaaaf" },
+];
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-8 md:py-12">
-      <div className="text-center">
-        <span className="mb-3 inline-block rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground">
-          Contact
-        </span>
-        <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-          Get in Touch
-        </h2>
-        {/* <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
-          {"Want to chat? Just shoot me a dm "}
+    <>
+      <Section id="contact" command="./contact.sh">
+        <p className="leading-relaxed">
+          Get in touch at{" "}
           <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline text-foreground hover:text-muted-foreground transition-colors"
+            href={`mailto:${EMAIL}`}
+            className="link-underline break-all text-highlight transition-colors hover:text-highlight-hover"
           >
-            with a direct question on twitter
+            {EMAIL}
           </a>
-          {" and I'll respond whenever I can. I will ignore all soliciting."}
-        </p> */}
-      </div>
+          .
+        </p>
+        <ul className="mt-4 flex gap-6 font-mono text-sm">
+          {socials.map((s) => (
+            <li key={s.label}>
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
-      {/* Footer with social icons */}
-      <footer className="mt-16 flex items-center justify-center gap-4 border-t border-border pt-8 pb-8">
-        {socials.map((social) => {
-          const Icon = social.icon
-          return (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              aria-label={social.label}
-            >
-              <Icon className="h-5 w-5" />
-            </a>
-          )
-        })}
+      <footer className="flex justify-between gap-4 pb-16 pt-12 font-mono text-xs text-muted-foreground">
+        <span>© {new Date().getFullYear()} Mohamed Minsaf</span>
+        <span>built with next.js</span>
       </footer>
-    </section>
-  )
+    </>
+  );
 }

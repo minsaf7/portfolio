@@ -11,10 +11,21 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-fira-code)', 'monospace'],
+        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
+        brand: {
+          maroon: '#780000',
+          red: '#c1121f',
+          cream: '#fdf0d5',
+          navy: '#0d1321',
+          blue: '#669bbc',
+        },
+        highlight: {
+          DEFAULT: 'hsl(var(--highlight))',
+          hover: 'hsl(var(--highlight-hover))',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
