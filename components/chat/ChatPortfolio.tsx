@@ -219,9 +219,9 @@ export function ChatPortfolio() {
             </button>
           </form>
 
-          <p className="mt-3 hidden text-center text-xs text-muted-foreground/60 sm:block">
+          {/* <p className="mt-3 hidden text-center text-xs text-muted-foreground/60 sm:block">
             © {new Date().getFullYear()} Mohamed Minsaf · built with next.js
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
