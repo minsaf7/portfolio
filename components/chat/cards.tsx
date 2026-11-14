@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Instagram, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, FileText, Github, Instagram, Linkedin, Mail } from "lucide-react";
 import { education, experiences, profile, projects, type Project } from "@/lib/data";
 
 const card =
@@ -178,5 +178,36 @@ export function ContactCard() {
         ))}
       </ul>
     </div>
+  );
+}
+
+/** Event name the chat listens for to open the CV modal. */
+export const OPEN_CV_EVENT = "portfolio:open-cv";
+
+export function CvCard() {
+  return (
+    <button
+      type="button"
+      onClick={() => window.dispatchEvent(new Event(OPEN_CV_EVENT))}
+      className={`group flex w-full max-w-sm items-center gap-4 p-4 text-left transition-transform duration-300 hover:-translate-y-0.5 ${card}`}
+    >
+      <span className="flex h-14 w-11 shrink-0 flex-col gap-1 rounded-md bg-white p-2 shadow-sm ring-1 ring-black/5">
+        <span className="h-1.5 w-5 rounded-full bg-neutral-800" />
+        <span className="h-1 w-6 rounded-full bg-neutral-300" />
+        <span className="h-1 w-5 rounded-full bg-neutral-300" />
+        <span className="mt-1 h-1 w-6 rounded-full bg-neutral-300" />
+        <span className="h-1 w-4 rounded-full bg-neutral-300" />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-medium tracking-tight">{profile.name} — CV</span>
+        <span className="block text-sm text-muted-foreground">
+          Experience · Projects · Skills · Education
+        </span>
+      </span>
+      <span className="flex items-center gap-1 text-xs font-medium text-highlight">
+        <FileText className="h-4 w-4" />
+        Open
+      </span>
+    </button>
   );
 }

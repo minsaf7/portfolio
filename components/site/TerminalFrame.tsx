@@ -5,7 +5,7 @@
  */
 export function TerminalFrame({ title = "~" }: { title?: string }) {
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-30 sm:inset-3">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-30 sm:inset-3 print:hidden">
       {/* window edge; the huge spread shadow paints the desktop outside it */}
       <div className="absolute inset-0 shadow-[0_0_0_100vmax_hsl(var(--desktop))] ring-1 ring-border sm:rounded-xl" />
 

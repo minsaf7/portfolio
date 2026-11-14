@@ -5,6 +5,8 @@ import { CornerDownLeft } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
 import { chipLabels, getReply, matchIntent, type Intent } from "./replies";
+import { CvModal } from "./CvModal";
+import { OPEN_CV_EVENT } from "./cards";
 
 type Message = { id: number; from: "bot" | "user"; node: ReactNode; card?: boolean };
 
@@ -64,6 +66,16 @@ export function ChatPortfolio() {
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const nextId = useRef(0);
   const busy = useRef(false); // true while a reply is being "typed"
+  const [cvOpen, setCvOpen] = useState(false);
+
+  // the CV card inside the chat dispatches this event;
+  // visiting /#cv opens the CV straight away (handy link to share)
+  useEffect(() => {
+    if (window.location.hash === "#cv") setCvOpen(true);
+    const open = () => setCvOpen(true);
+    window.addEventListener(OPEN_CV_EVENT, open);
+    return () => window.removeEventListener(OPEN_CV_EVENT, open);
+  }, []);
   const endRef = useRef<HTMLDivElement>(null);
 
   const respond = useCallback((intent: Intent) => {
@@ -86,6 +98,7 @@ export function ChatPortfolio() {
       setTimeout(() => {
         busy.current = false;
         setChips(reply.chips);
+        if (reply.action === "open-cv") setCvOpen(true);
       }, elapsed + 100),
     );
   }, []);
@@ -123,13 +136,13 @@ export function ChatPortfolio() {
       {/* soft panel behind the chat so the terminal session fades out under it */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-y-0 left-1/2 -z-[5] w-[min(52rem,100%)] -translate-x-1/2 bg-background/85"
+        className="pointer-events-none print:hidden fixed inset-y-0 left-1/2 -z-[5] w-[min(52rem,100%)] -translate-x-1/2 bg-background/85"
         style={{
           maskImage: "linear-gradient(to right, transparent, #000 14%, #000 86%, transparent)",
           WebkitMaskImage: "linear-gradient(to right, transparent, #000 14%, #000 86%, transparent)",
         }}
       />
-      <main className="mx-auto flex min-h-[100dvh] w-full max-w-2xl flex-col px-4 pb-52 pt-20">
+      <main className="print:hidden mx-auto flex min-h-[100dvh] w-full max-w-2xl flex-col px-4 pb-52 pt-20">
         <div className="my-auto flex w-full flex-col">
           <div className="fade-up mb-4 flex items-end gap-3">
             <div className="relative">
@@ -171,7 +184,7 @@ export function ChatPortfolio() {
       </main>
 
       {/* composer */}
-      <div className="fixed inset-x-0 bottom-0 z-20 sm:inset-x-3 sm:bottom-3">
+      <div className="print:hidden fixed inset-x-0 bottom-0 z-20 sm:inset-x-3 sm:bottom-3">
         <div className="pointer-events-none absolute inset-0 -top-16 bg-gradient-to-t from-background via-background/90 to-transparent" />
         <div className="relative mx-auto w-full max-w-2xl px-4 pb-4 sm:pb-6">
           <div className="no-scrollbar -mx-4 flex min-h-[52px] gap-2 overflow-x-auto px-4 py-2 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0">
@@ -224,6 +237,8 @@ export function ChatPortfolio() {
           </p>
         </div>
       </div>
+
+      <CvModal open={cvOpen} onOpenChange={setCvOpen} />
     </div>
   );
 }
