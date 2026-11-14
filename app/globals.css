@@ -218,6 +218,39 @@
   display: none;
 }
 
+/* Printing (CV "Download PDF"): output only the CV sheet on plain white */
+@media print {
+  @page {
+    margin: 16mm 14mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  .cv-overlay {
+    position: static !important;
+    overflow: visible !important;
+    background: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+  }
+  .cv-sheet {
+    max-width: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    animation: none !important;
+  }
+  .cv-sheet-inner {
+    max-width: none !important;
+    padding: 0 !important;
+    font-size: 10.5pt;
+    line-height: 1.55 !important;
+  }
+  .cv-sheet a {
+    text-decoration: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

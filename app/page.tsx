@@ -47,7 +47,7 @@ export default function Page() {
       <TerminalFrame />
 
       {/* Plain-text version of the portfolio for search engines and screen readers */}
-      <div className="sr-only">
+      <div className="sr-only print:hidden">
         <h1>
           {profile.name} — {profile.role}
         </h1>

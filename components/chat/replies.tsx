@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { profile, projects } from "@/lib/data";
 import {
   ContactCard,
+  CvCard,
   EducationCard,
   ExperienceCard,
   ProjectCard,
@@ -17,13 +18,19 @@ export type Intent =
   | "experience"
   | "education"
   | "stack"
+  | "cv"
   | "greeting"
   | "thanks"
   | "fallback"
   | `project:${string}`;
 
 export type BotMessage = { node: ReactNode; card?: boolean };
-export type Reply = { messages: BotMessage[]; chips: Intent[] };
+export type Reply = {
+  messages: BotMessage[];
+  chips: Intent[];
+  /** side effect to run once the messages have been delivered */
+  action?: "open-cv";
+};
 
 /** Labels shown on quick-reply buttons (also used as the user's message). */
 export const chipLabels: Partial<Record<Intent, string>> = {
@@ -33,6 +40,7 @@ export const chipLabels: Partial<Record<Intent, string>> = {
   experience: "Where have you worked?",
   education: "Your education",
   stack: "What's your stack?",
+  cv: "View my CV",
 };
 
 const A = ({ href, children }: { href: string; children: ReactNode }) => (
@@ -68,7 +76,7 @@ export function getReply(intent: Intent): Reply {
           { node: <>Hey! I&apos;m {profile.shortName} 👋 Welcome to my portfolio.</> },
           { node: <>What brings you here?</> },
         ],
-        chips: ["about", "work", "info"],
+        chips: ["about", "work", "cv", "info"],
       };
 
     case "about":
@@ -101,7 +109,7 @@ export function getReply(intent: Intent): Reply {
             ),
           },
         ],
-        chips: ["work", "experience", "education", "stack"],
+        chips: ["work", "experience", "education", "cv"],
       };
 
     case "work":
@@ -120,7 +128,7 @@ export function getReply(intent: Intent): Reply {
           { node: <>Sure — here&apos;s everything you need:</> },
           { node: <ContactCard />, card: true },
         ],
-        chips: ["about", "work"],
+        chips: ["cv", "about", "work"],
       };
 
     case "experience":
@@ -129,7 +137,7 @@ export function getReply(intent: Intent): Reply {
           { node: <>4+ years so far, across fintech and ERP. Tap a role to see what I did there:</> },
           { node: <ExperienceCard />, card: true },
         ],
-        chips: ["work", "education", "info"],
+        chips: ["work", "education", "cv"],
       };
 
     case "education":
@@ -148,6 +156,16 @@ export function getReply(intent: Intent): Reply {
           { node: <StackCard />, card: true },
         ],
         chips: ["work", "experience", "info"],
+      };
+
+    case "cv":
+      return {
+        messages: [
+          { node: <>Here&apos;s my CV 📄 Opening it for you now.</> },
+          { node: <CvCard />, card: true },
+        ],
+        chips: ["work", "experience", "info"],
+        action: "open-cv",
       };
 
     case "greeting":
@@ -190,6 +208,7 @@ const projectKeywords: [RegExp, string][] = [
 export function matchIntent(input: string): Intent {
   const t = input.toLowerCase().trim();
 
+  if (/\bcv\b|resume|résumé|curriculum/.test(t)) return "cv";
   for (const [re, id] of projectKeywords) if (re.test(t)) return `project:${id}`;
   if (/experience|career|job|work history|worked|employ|company|directfn|blue lotus|role|position/.test(t))
     return "experience";

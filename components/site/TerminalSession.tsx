@@ -104,7 +104,7 @@ export function TerminalSession() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 select-none overflow-hidden px-5 pt-16 font-mono text-[13px] leading-6 opacity-[0.28] sm:px-8 sm:pt-[4.5rem] dark:opacity-[0.3]"
+      className="pointer-events-none fixed inset-0 -z-10 select-none print:hidden overflow-hidden px-5 pt-16 font-mono text-[13px] leading-6 opacity-[0.28] sm:px-8 sm:pt-[4.5rem] dark:opacity-[0.3]"
     >
       {visible.map((l, i) => (
         <div key={i} className="whitespace-pre">

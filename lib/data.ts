@@ -317,6 +317,7 @@ export const profile = {
   shortName: "Minsaf",
   role: "Senior Software Engineer",
   email: "minsafmohamed7@gmail.com",
+  website: "https://minsaaf.tech",
   coreStack: ["React", "TypeScript", "Node.js"],
   certification: {
     label: "Certified Frontend Developer (Meta – Coursera)",
