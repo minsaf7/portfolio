@@ -1,12 +1,9 @@
-import { ExperienceSection } from "@/components/ui/Experience";
-import { AboutSection } from "@/components/ui/AboutSection";
-import { ContactSection } from "@/components/ui/ContactSection";
-import { EducationSection } from "@/components/ui/EducationSection";
-import { HeroSection } from "@/components/ui/HeroSection";
-import { ProjectsSection } from "@/components/ui/ProjectSection";
 import { Metadata } from "next";
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { DotGridBackground } from "@/components/site/DotGridBackground";
+import Link from "next/link";
+import { TerminalSession } from "@/components/site/TerminalSession";
+import { TerminalFrame } from "@/components/site/TerminalFrame";
+import { ChatPortfolio } from "@/components/chat/ChatPortfolio";
+import { education, experiences, profile, projects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Mohamed Minsaf | Senior Software Engineer",
@@ -37,9 +34,7 @@ export default function Page() {
     url: "https://minsaaf.tech",
   };
   return (
-    <div className="mx-auto min-h-screen max-w-2xl px-5">
-      <DotGridBackground />
-      <SiteHeader />
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -48,14 +43,50 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <EducationSection />
-        <ProjectsSection />
-        <ContactSection />
-      </main>
-    </div>
+      <TerminalSession />
+      <TerminalFrame />
+
+      {/* Plain-text version of the portfolio for search engines and screen readers */}
+      <div className="sr-only">
+        <h1>
+          {profile.name} — {profile.role}
+        </h1>
+        <p>
+          Senior Software Engineer with 4+ years of experience designing and building
+          scalable frontend and full-stack applications across fintech and ERP domains.
+          Specialized in React, TypeScript, and Node.js.
+        </p>
+        <h2>Experience</h2>
+        <ul>
+          {experiences.map((e) => (
+            <li key={e.role}>
+              {e.role}, {e.company} ({e.period})
+            </li>
+          ))}
+        </ul>
+        <h2>Projects</h2>
+        <ul>
+          {projects.map((p) => (
+            <li key={p.id}>
+              <Link href={`/project/${p.id}`}>{p.title}</Link>: {p.description}
+            </li>
+          ))}
+        </ul>
+        <h2>Education</h2>
+        <ul>
+          {education.map((e) => (
+            <li key={e.degree}>
+              {e.degree}, {e.school} ({e.period})
+            </li>
+          ))}
+        </ul>
+        <h2>Contact</h2>
+        <p>
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        </p>
+      </div>
+
+      <ChatPortfolio />
+    </>
   );
 }

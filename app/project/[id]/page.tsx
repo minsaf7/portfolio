@@ -40,7 +40,7 @@
 //       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
 //         <div className="mx-auto flex max-w-2xl items-center px-4 py-3">
 //           <Link
-//             href="/#projects"
+//             href="/"
 //             className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
 //           >
 //             <ArrowLeft className="h-4 w-4" />
@@ -178,7 +178,8 @@ import { ArrowLeft } from "lucide-react";
 import { projects } from "@/lib/data";
 import { Reveal } from "@/components/site/Reveal";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
-import { DotGridBackground } from "@/components/site/DotGridBackground";
+import { TerminalSession } from "@/components/site/TerminalSession";
+import { TerminalFrame } from "@/components/site/TerminalFrame";
 
 // This tells Next.js which pages to pre-render
 export async function generateStaticParams() {
@@ -243,11 +244,12 @@ export default async function ProjectPage({
 
   return (
     <div className="mx-auto min-h-screen max-w-2xl px-5">
-      <DotGridBackground />
-      <header className="pt-10 font-mono md:pt-16">
+      <TerminalSession />
+      <TerminalFrame title={`~/projects/${project.id}`} />
+      <header className="pt-16 font-mono md:pt-24">
         <div className="flex items-center justify-between">
           <Link
-            href="/#projects"
+            href="/"
             className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <span className="transition-transform group-hover:-translate-x-0.5">←</span>

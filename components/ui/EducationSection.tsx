@@ -1,27 +1,6 @@
 import { Section } from "@/components/site/Section";
+import { education } from "@/lib/data";
 
-const education = [
-  {
-    school: "Coventry University, UK",
-    degree: "BSc (Hons) Computing — First Class",
-    period: "2019 – 2021",
-  },
-  {
-    school: "NIBM, Sri Lanka",
-    degree: "Higher National Diploma in Computer Based Information System",
-    period: "2017 – 2019",
-  },
-  {
-    school: "NIBM, Sri Lanka",
-    degree: "Diploma in Computer Based Information System",
-    period: "2016 – 2017",
-  },
-  {
-    school: "Royal College Colombo, Sri Lanka",
-    degree: "Advance Level",
-    period: "2014 – 2016",
-  },
-];
 
 export function EducationSection() {
   return (

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="86 92 340 340" role="img" aria-label="Illustrated avatar of Mohamed Minsaf">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf0d5"/>
+      <stop offset="1" stop-color="#f1d9a8"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c48a62"/>
+      <stop offset="1" stop-color="#a8714c"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f2330"/>
+      <stop offset="1" stop-color="#0d1321"/>
+    </linearGradient>
+    <clipPath id="circle"><circle cx="256" cy="256" r="256"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#circle)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <!-- subtle accent ring -->
+    <circle cx="256" cy="256" r="232" fill="none" stroke="#c1121f" stroke-opacity="0.12" stroke-width="10"/>
+
+    <!-- suit -->
+    <path d="M58 512 C66 438 140 404 214 394 L298 394 C372 404 446 438 454 512 Z" fill="url(#suit)"/>
+    <!-- shirt -->
+    <path d="M214 394 L256 468 L298 394 Z" fill="#f7f2ea"/>
+    <!-- lapels -->
+    <path d="M208 395 L252 474 L224 512 L172 512 C176 468 188 424 208 395 Z" fill="#262b3a"/>
+    <path d="M304 395 L260 474 L288 512 L340 512 C336 468 324 424 304 395 Z" fill="#262b3a"/>
+
+    <!-- neck -->
+    <path d="M220 320 L220 398 Q256 424 292 398 L292 320 Z" fill="#94603f"/>
+
+    <!-- ears -->
+    <ellipse cx="164" cy="270" rx="17" ry="27" fill="#ad764f"/>
+    <ellipse cx="348" cy="270" rx="17" ry="27" fill="#ad764f"/>
+    <ellipse cx="166" cy="272" rx="7" ry="13" fill="#94603f"/>
+    <ellipse cx="346" cy="272" rx="7" ry="13" fill="#94603f"/>
+
+    <!-- face -->
+    <ellipse cx="256" cy="262" rx="94" ry="112" fill="url(#skin)"/>
+
+    <!-- cheeks -->
+    <ellipse cx="200" cy="292" rx="18" ry="10" fill="#d9866a" opacity="0.35"/>
+    <ellipse cx="312" cy="292" rx="18" ry="10" fill="#d9866a" opacity="0.35"/>
+
+    <!-- beard -->
+    <path d="M163 268 C160 336 192 404 256 408 C320 404 352 336 349 268
+             C342 300 326 318 306 322 C292 306 274 302 256 304
+             C238 302 220 306 206 322 C186 318 170 300 163 268 Z" fill="#221913"/>
+    <!-- moustache -->
+    <path d="M214 318 C228 300 246 300 256 308 C266 300 284 300 298 318 C284 314 270 316 256 320 C242 316 228 314 214 318 Z" fill="#1a130e"/>
+    <!-- smile -->
+    <path d="M232 332 Q256 358 280 332 Q256 344 232 332 Z" fill="#b8664f"/>
+    <path d="M240 336 Q256 346 272 336" fill="none" stroke="#f3e6da" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- nose -->
+    <path d="M254 258 C252 276 244 286 246 294 C252 299 262 299 268 294" fill="none" stroke="#8a5536" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- eyes -->
+    <ellipse cx="220" cy="258" rx="9" ry="11" fill="#1a1310"/>
+    <ellipse cx="292" cy="258" rx="9" ry="11" fill="#1a1310"/>
+    <circle cx="223" cy="254" r="3" fill="#fff"/>
+    <circle cx="295" cy="254" r="3" fill="#fff"/>
+
+    <!-- eyebrows -->
+    <path d="M196 236 Q218 222 242 233" fill="none" stroke="#1a130e" stroke-width="10" stroke-linecap="round"/>
+    <path d="M270 233 Q294 222 316 236" fill="none" stroke="#1a130e" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- hair: voluminous, wavy, falling forward over the forehead -->
+    <path d="M160 262 C142 192 166 126 230 110 C300 92 374 128 366 208
+             C364 232 358 250 350 264 C348 238 340 218 328 206
+             C324 218 314 224 302 222 C306 212 302 200 292 194
+             C284 212 266 222 246 216 C252 206 250 196 242 190
+             C234 210 214 224 194 222 C198 214 196 206 190 200
+             C180 214 168 238 160 262 Z" fill="#1c1512"/>
+    <!-- extra volume on top -->
+    <path d="M190 132 C204 96 250 84 278 96 C300 84 340 98 350 128 C320 112 280 110 256 120 C232 110 206 116 190 132 Z" fill="#1c1512"/>
+    <!-- strands / highlights -->
+    <path d="M196 150 C220 132 252 130 276 140" fill="none" stroke="#3b2c22" stroke-width="6" stroke-linecap="round"/>
+    <path d="M286 132 C318 138 340 160 346 186" fill="none" stroke="#3b2c22" stroke-width="6" stroke-linecap="round"/>
+    <path d="M232 176 C250 168 270 170 286 182" fill="none" stroke="#3b2c22" stroke-width="5" stroke-linecap="round"/>
+    <path d="M212 212 C222 202 228 192 230 180" fill="none" stroke="#3b2c22" stroke-width="5" stroke-linecap="round"/>
+    <path d="M268 210 C276 200 278 188 276 176" fill="none" stroke="#3b2c22" stroke-width="5" stroke-linecap="round"/>
+    <path d="M314 214 C320 204 322 194 318 184" fill="none" stroke="#3b2c22" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>
